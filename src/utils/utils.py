@@ -83,3 +83,27 @@ def matrix_to_list(adj_matrix_df):
     adj_list_df = pd.DataFrame(adj_list)
 
     return adj_list_df
+
+def closeness_centrality(matrix):
+    pass
+
+def unary_degree(adj_list, node):
+    return pd.DataFrame(adj_list[node].value_counts())
+
+def degree(Adj_matrix):
+    #converting array into numpy matrix
+    G=np.matrix(Adj_matrix)
+
+    #temporary array to store degree values
+    nodes_degree=[]
+    #summing up the row entry(each node) for degree by first converting it to list
+    d=np.sum(G.tolist(),axis=1)
+    print(d)
+    for i in range (len(d)):
+        #storing degree values in above mentioned array
+        nodes_degree.append(d[i])  
+    #returning list of degrees of nodes
+    return(list(nodes_degree) ) 
+
+df = pd.read_csv("../../data/output/3. co_occ_matrix.csv")
+print(degree(df))
