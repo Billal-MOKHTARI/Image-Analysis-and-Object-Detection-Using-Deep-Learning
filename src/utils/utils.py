@@ -88,22 +88,15 @@ def closeness_centrality(matrix):
     pass
 
 def unary_degree(adj_list, node):
-    return pd.DataFrame(adj_list[node].value_counts())
+    degrees = adj_list[node].value_counts()
+    return pd.DataFrame({node: degrees.index, "unary degree": degrees.tolist()})
 
-def degree(Adj_matrix):
-    #converting array into numpy matrix
-    G=np.matrix(Adj_matrix)
+def degree(adjacency_matrix):
+    # Assuming the dataframe contains the adjacency matrix
+    # Summing along the rows to calculate the degree of each node
+    degrees = adjacency_matrix.sum(axis=1)
+    return pd.DataFrame({"Node":degrees.index, "degree":degrees.tolist()})
 
-    #temporary array to store degree values
-    nodes_degree=[]
-    #summing up the row entry(each node) for degree by first converting it to list
-    d=np.sum(G.tolist(),axis=1)
-    print(d)
-    for i in range (len(d)):
-        #storing degree values in above mentioned array
-        nodes_degree.append(d[i])  
-    #returning list of degrees of nodes
-    return(list(nodes_degree) ) 
+df = pd.read_csv("../../data/output/4. co_occ_list.csv")
 
-df = pd.read_csv("../../data/output/3. co_occ_matrix.csv")
-print(degree(df))
+print(unary_degree(df, "Node"))
