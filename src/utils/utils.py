@@ -96,7 +96,3 @@ def degree(adjacency_matrix):
     # Summing along the rows to calculate the degree of each node
     degrees = adjacency_matrix.sum(axis=1)
     return pd.DataFrame({"Node":degrees.index, "degree":degrees.tolist()})
-
-df = pd.read_csv("../../data/output/4. co_occ_list.csv")
-
-print(unary_degree(df, "Node"))

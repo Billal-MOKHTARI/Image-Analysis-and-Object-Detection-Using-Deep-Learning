@@ -1,4 +1,4 @@
-,node_weight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId,Node,type,Image,Image URL
+,nodeWeight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId,Node,type,Image,Image URL
 0,83,159,0.508087829687994,2080.190627423832,0.6753623188405797,1,0,38,6,sand,stuff,PHOTO-2023-12-08-12-38-34.jpg,https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/PHOTO-2023-12-08-12-38-34.jpg
 1,29,89,0.385361106356142,317.3100469963472,0.5724815724815725,1,0,7,6,tree,stuff,PHOTO-2023-12-08-12-38-34.jpg,https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/PHOTO-2023-12-08-12-38-34.jpg
 2,101,179,0.5115393199051063,2973.9470858347017,0.7147239263803681,1,0,38,6,sky,stuff,PHOTO-2023-12-08-12-38-34.jpg,https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/PHOTO-2023-12-08-12-38-34.jpg

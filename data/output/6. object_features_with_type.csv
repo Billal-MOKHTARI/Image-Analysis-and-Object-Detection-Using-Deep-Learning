@@ -1,4 +1,4 @@
-,node_weight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId,Node,type
+,nodeWeight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId,Node,type
 0,3,25,0.2142047653746722,2.943589743589744,0.5154867256637168,1,0,47,6,wall-brick,stuff
 1,14,52,0.2799676447721971,63.7798284017324,0.5381062355658198,1,0,31,6,bus,thing
 2,15,71,0.3971350778077098,117.26376513493383,0.5508274231678487,1,0,33,6,table,stuff

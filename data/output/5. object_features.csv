@@ -1,4 +1,4 @@
-object,node_weight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId
+object,nodeWeight,degree,pageRank,betweenness,closeness,componentId,strongComponentId,louvainComponentId,labelPropagationId
 wall-brick,3,25,0.21420476537467228,2.9435897435897433,0.5154867256637168,1,0,47,6
 bus,14,52,0.27996764477219716,63.7798284017324,0.5381062355658198,1,0,31,6
 table,15,71,0.39713507780770985,117.26376513493383,0.5508274231678487,1,0,33,6
