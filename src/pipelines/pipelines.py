@@ -3,7 +3,9 @@ import os
 # Importing user-defined module
 sys.path.append(os.path.join("..", "utils"))
 import utils
+import visualization
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def create_object_co_occurrence_graphxr_dataset(annot_mat, label_categories_path):
     """

@@ -107,5 +107,4 @@ def show_measure(data, col_x, col_y, grouped_by=None, ascending=None, xlabel=Non
 
     plt.show()
     
-# df = pd.read_csv("../../data/output/6. object_features_with_type.csv", header=0, index_col=0)
-# show_measure(df, "Node", "degree", save_path="t.png")
+

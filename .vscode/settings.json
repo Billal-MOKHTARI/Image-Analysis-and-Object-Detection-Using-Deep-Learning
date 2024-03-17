@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./src"
+        "./src",
+        "./src/utils"
     ],
     "python.testing.pytestArgs": [
         "tests"
