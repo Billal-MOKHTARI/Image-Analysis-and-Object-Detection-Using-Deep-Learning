@@ -100,13 +100,3 @@ def select_frequent_items_measures(data, methods:dict, operator="intersection", 
     result = combine_dataframes(frequent_items, operator=operator)
     
     return result 
-    
-        
-    
-
-DATA_PATH = "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/6. object_features_with_type.csv"
-data = pd.read_csv(DATA_PATH, header=0, index_col=0)
-print(select_frequent_items_measures(data,
-                                    methods={"1": {"by": "interval", "measure": "degree", "lb":80, "ub": 102},
-                                            "2": {"by": "interval", "measure": "pageRank", "lb":0.5, "ub": 1},
-                                            "3": {"by": "interval", "measure": "betweenness", "lb":1000, "ub": 15000}}, operator="union"))
