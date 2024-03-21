@@ -6,7 +6,7 @@ from utils import utils
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def create_co_occurrence_graphxr_dataset(annot_mat_path, label_categories_path, URL_base, save_path = None):
+def create_co_occurrence_graphxr_dataset(annot_mat_path, label_categories_path, URL_base, save_path = None, **kwargs):
     """
     Create a co-occurrence graph dataset for GraphXR.
 
@@ -17,6 +17,9 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path, label_categories_path, 
     Returns:
         pd.DataFrame: DataFrame containing the co-occurrence graph dataset.
     """
+
+    index = kwargs.get('index', True)
+
     # Read label categories and annotation matrix
     label_categories = pd.read_csv(label_categories_path, header=0, index_col=0)
     obj_annot_mat = pd.read_csv(annot_mat_path, header=0, index_col=0)
@@ -61,14 +64,8 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path, label_categories_path, 
     co_occ_list["Image URL"] = URL_base + co_occ_list["Node_image"]
 
     if save_path is not None:
-        co_occ_list.to_csv(save_path, index=True)
+        co_occ_list.to_csv(save_path, index=index)
 
     return co_occ_list
 
-# pd.set_option('display.max_columns', None)
-# path = "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv"
-# cat = "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv"
-# print(create_co_occurrence_graphxr_dataset(path, cat, "f"))
-
-# mat = pd.read_csv(path, header=0, index_col=0).T
 
