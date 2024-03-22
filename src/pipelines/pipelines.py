@@ -90,5 +90,5 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     if save_path_img is not None:
         img_co_occ_list.to_csv(save_path_img, index=index_img)
 
-    return co_occ_list, {obj_co_occ_list, img_co_occ_list}
+    return co_occ_list, obj_co_occ_list, img_co_occ_list
 
