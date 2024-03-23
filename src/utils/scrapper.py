@@ -4,7 +4,9 @@ from lxml import html
 import requests
 from bs4 import BeautifulSoup
 
-def image_metadata_scrapper(URL, save_path = None):
+def image_metadata_scrapper(URL, save_path = None, **kwargs):
+
+    index = kwargs.get("index", True)
 
     def dict_to_dataframe(data):
         # Initialize a list to store dictionaries for each row
@@ -71,7 +73,7 @@ def image_metadata_scrapper(URL, save_path = None):
     data = dict_to_dataframe(data)
 
     if save_path is not None:
-        data.to_csv(save_path)
+        data.to_csv(save_path, index = index)
 
     return data
             
@@ -79,5 +81,5 @@ def image_metadata_scrapper(URL, save_path = None):
 
 
 URL = "https://www.pic2map.com/photos-sgrumn.html"
-print(image_metadata_scrapper(URL))
+image_metadata_scrapper(URL, "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/image_metadata.csv")
 
