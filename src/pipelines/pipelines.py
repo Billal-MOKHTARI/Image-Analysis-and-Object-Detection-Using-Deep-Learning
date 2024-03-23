@@ -15,7 +15,6 @@ from sklearn.preprocessing import LabelEncoder
 def create_co_occurrence_graphxr_dataset(annot_mat_path, 
                                         label_categories_path, 
                                         URL_base, 
-                                        save_path_overall = None, 
                                         save_path_obj = None, 
                                         save_path_img = None, 
                                         **kwargs):
@@ -30,13 +29,16 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
         pd.DataFrame: DataFrame containing the co-occurrence graph dataset.
     """
 
-    index_overall = kwargs.get('index_overall', False)
     index_obj = kwargs.get('index_obj', False)
     index_img = kwargs.get('index_img', False)
 
     # Read label categories and annotation matrix
     label_categories = pd.read_csv(label_categories_path, header=0, index_col=0)
     obj_annot_mat = pd.read_csv(annot_mat_path, header=0, index_col=0)
+
+    # Stuff
+    stuff = label_categories[label_categories["type"] == "stuff"]["Node"].tolist()
+    thing = label_categories[label_categories["type"] == "thing"]["Node"].tolist()
 
     # Calculate co-occurrence matrix and convert to list
     obj_co_occ_matrix = utils.calculate_co_occurrence_matrix(obj_annot_mat)
@@ -57,7 +59,22 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     # Merge object co-occurrence list with annotation list
     obj_co_occ_list = pd.merge(obj_co_occ_list, annot_list.drop(columns=["Weight"]), on="Node", how="right")
 
+    # Add linkType column. 
+    # "SS", "TT" and "ST" denote relationships between two stuffs, two things or etween stuff and thing respectivly.
+    obj_co_occ_list['linkType'] = obj_co_occ_list['Node'].copy()
+    
+    # Identify TT relationships
+    tt_mask = obj_co_occ_list['Node'].isin(thing) & obj_co_occ_list['Neighbor'].isin(thing)
+    obj_co_occ_list.loc[tt_mask, 'linkType'] = 'TT'
 
+    # Identify SS relationships
+    ss_mask = obj_co_occ_list['Node'].isin(stuff) & obj_co_occ_list['Neighbor'].isin(stuff)
+    obj_co_occ_list.loc[ss_mask, 'linkType'] = 'SS'
+
+    # Identify ST relationships (rest of the cases)
+    obj_co_occ_list.loc[(~tt_mask) & (~ss_mask), 'linkType'] = 'ST'
+
+    print(obj_co_occ_list)
     # Calculate co-occurrence matrix for image nodes and convert to list
     img_annot_mat = obj_annot_mat.copy().T
     img_co_occ_matrix = utils.calculate_co_occurrence_matrix(img_annot_mat)
@@ -71,24 +88,15 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     # Merge node weights with image co-occurrence list
     img_co_occ_list = pd.merge(img_co_occ_list, node_weight_img, on="Node", how="left")
 
-
-
-    # Merge object and image co-occurrence lists
-    co_occ_list = pd.merge(obj_co_occ_list, img_co_occ_list, how="left", left_on="Node image", right_on="Node",
-                           suffixes=("_object", "_image"))
-    del co_occ_list["Node image"]
-
-    co_occ_list["Image URL"] = URL_base + co_occ_list["Node_image"]
+    # Add URL column
+    img_co_occ_list["Image URL"] = URL_base + img_co_occ_list["Node"]
     
 
-    if save_path_overall is not None:
-        co_occ_list.to_csv(save_path_overall, index=index_overall)
-    
+
     if save_path_obj is not None:
         obj_co_occ_list.to_csv(save_path_obj, index=index_obj)
 
     if save_path_img is not None:
         img_co_occ_list.to_csv(save_path_img, index=index_img)
 
-    return co_occ_list, obj_co_occ_list, img_co_occ_list
-
+    return obj_co_occ_list, img_co_occ_list
