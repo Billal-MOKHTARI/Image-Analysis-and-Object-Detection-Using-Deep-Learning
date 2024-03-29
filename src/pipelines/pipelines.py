@@ -1,11 +1,8 @@
 import sys
 import os
-# Get the current directory of pipelines.py
-current_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Add the parent directory to the Python path
-parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
-sys.path.append(parent_dir)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from utils import utils
 import pandas as pd
@@ -100,3 +97,8 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
         img_co_occ_list.to_csv(save_path_img, index=index_img)
 
     return obj_co_occ_list, img_co_occ_list
+
+def preprocess_image_metadata(annot_mat_path, 
+                                label_categories_path, 
+                                URL_base):
+    pass
