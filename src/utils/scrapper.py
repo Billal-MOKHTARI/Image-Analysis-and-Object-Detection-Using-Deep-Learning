@@ -80,6 +80,6 @@ def image_metadata_scrapper(URL, save_path = None, **kwargs):
         
 
 
-URL = "https://www.pic2map.com/photos-sgrumn.html"
-image_metadata_scrapper(URL, "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/image_metadata.csv")
+# URL = "https://www.pic2map.com/photos-sgrumn.html"
+# image_metadata_scrapper(URL, "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/image_metadata.csv")
 
