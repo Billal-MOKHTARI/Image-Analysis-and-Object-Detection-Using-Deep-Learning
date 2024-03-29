@@ -8,3 +8,7 @@ cd $1
 gzip -dc Image-ExifTool-12.81.tar.gz | tar -xf -
 cd Image-ExifTool-12.81
 
+perl Makefile.PL
+make test
+
+sudo make install
