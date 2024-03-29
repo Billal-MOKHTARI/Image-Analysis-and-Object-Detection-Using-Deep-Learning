@@ -4,7 +4,10 @@ from lxml import html
 import requests
 from bs4 import BeautifulSoup
 
-def image_metadata_scrapper(URL, save_path = None, **kwargs):
+from PIL import Image
+from PIL.ExifTags import TAGS
+
+def pic2map_scrapper(URL, save_path = None, **kwargs):
 
     index = kwargs.get("index", True)
 
@@ -78,7 +81,6 @@ def image_metadata_scrapper(URL, save_path = None, **kwargs):
     return data
             
         
-
 
 # URL = "https://www.pic2map.com/photos-sgrumn.html"
 # image_metadata_scrapper(URL, "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/image_metadata.csv")
