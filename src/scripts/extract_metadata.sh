@@ -15,17 +15,8 @@ if [ ! -d "$folder_path" ]; then
     exit 1
 fi
 
-# Extract metadata from images in the specified folder
-echo "Extracting metadata from images in '$folder_path'..."
-echo "File,Metadata" > "$output_csv"
-for image_path in "$folder_path"/*
-do
-    echo "Processing $image_path..."
-    if [ -f "$image_path" ]; then
-        filename=$(basename "$image_path")
-        metadata=$(exiftool -csv -q -r "$image_path")
-        echo "$metadata" >> "$output_csv"
-    fi
-done
+
+echo "$metadata" >> "$output_csv"
+exiftool -csv -q -r $folder_path > "$output_csv"
 
 echo "Metadata extraction complete. Output saved to $output_csv"
