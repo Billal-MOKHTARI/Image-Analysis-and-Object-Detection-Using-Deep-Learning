@@ -1,9 +1,10 @@
 #!/bin/bash
+source ../../configs/global.env
 
-DOWNLOAD_LINK = "https://exiftool.org/Image-ExifTool-12.81.tar.gz"
+cd $EXIFTOOL_PATH
 
-wget $1
-cd $1
+wget "https://exiftool.org/Image-ExifTool-12.81.tar.gz"
+
 
 gzip -dc Image-ExifTool-12.81.tar.gz | tar -xf -
 cd Image-ExifTool-12.81

@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 from PIL import Image
 from PIL.ExifTags import TAGS
+import subprocess
 
 def pic2map_scrapper(URL, save_path = None, **kwargs):
 
@@ -82,6 +83,13 @@ def pic2map_scrapper(URL, save_path = None, **kwargs):
             
         
 
-# URL = "https://www.pic2map.com/photos-sgrumn.html"
-# image_metadata_scrapper(URL, "/workspaces/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/image_metadata.csv")
+def get_exif_data(folder_path, save_path, extract_metadata_path="../scripts/extract_metadata.sh"):
+    # Execute the shell script to extract metadata
+    try:
+        subprocess.run (["chmod", "+x", extract_metadata_path], check=True)
+        subprocess.run([extract_metadata_path, folder_path, save_path], check=True)
+        print("Metadata extraction completed successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Metadata extraction failed with exit code {e.returncode}.")
 
+get_exif_data("../../data/test", "../../data/output/metadata/metadata.csv")
