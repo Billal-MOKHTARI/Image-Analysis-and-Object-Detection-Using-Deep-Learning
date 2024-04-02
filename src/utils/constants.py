@@ -41,5 +41,5 @@ VALID_UNITS = [
 
 # Constructing the regex pattern
 valid_units_pattern = '|'.join(map(re.escape, VALID_UNITS))
-unit_regex_pattern = rf'([0-9]*({valid_units_pattern})[0-9]*/)*[0-9]*({valid_units_pattern})[0-9]*'
+unit_regex_pattern = rf'\(?([0-9]*({valid_units_pattern})[0-9]*/)*[0-9]*({valid_units_pattern})[0-9]*\)?'
 unit_regex_pattern = re.compile(unit_regex_pattern, re.IGNORECASE)

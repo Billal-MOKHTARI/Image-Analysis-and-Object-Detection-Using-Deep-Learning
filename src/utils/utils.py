@@ -133,10 +133,7 @@ def is_matching_regex(data, pattern=constants.unit_regex_pattern):
     - matched_data: DataFrame, the subset of the dataset that matches the pattern
     """
     
-    if re.fullmatch(pattern, data) is not None:
-        return True
-    else:
-        return False
+    return bool(re.fullmatch(pattern, data))
 
 def bring_up_measure_units(dataframe):
     """
@@ -180,13 +177,13 @@ def bring_up_measure_units(dataframe):
             str: The updated column name with measure unit.
         """
         if measure_unit:
-            # Check if the column name already contains parenthesis
-            if '(' in col_name and ')' in col_name:
-                # If it does, replace the content inside the parenthesis
-                return col_name[:col_name.find('(')] + f'({measure_unit})'
-            else:
-                # If not, add the measure unit in parenthesis
+            # Check if the measure unit matches the regex pattern
+            if is_matching_regex(measure_unit):
+                # If it does, add the measure unit in parenthesis
                 return f'{col_name} ({measure_unit})'
+            else:
+                # If not, return the original column name
+                return col_name
         else:
             return col_name
     
