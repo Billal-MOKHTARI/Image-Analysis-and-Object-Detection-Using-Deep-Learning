@@ -98,7 +98,5 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     return obj_co_occ_list, img_co_occ_list
 
-# def preprocess_image_metadata(annot_mat_path, 
-#                                 label_categories_path, 
-#                                 URL_base):
+# def preprocess_image_metadata(metatada_path, save_path, **kwargs):
 #     pass
