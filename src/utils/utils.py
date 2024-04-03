@@ -398,6 +398,64 @@ def set_index_from_column(data, column_name, index_name=None):
             data.index.name = index_name
         return data
 
+def modify_column(df, column_name, possible_prefixes, possible_suffixes, bracket_content):
+    # Remove possible prefixes
+    for prefix in possible_prefixes:
+        df[column_name] = df[column_name].str.replace(prefix, '')
+    
+    # Remove possible suffixes
+    for suffix in possible_suffixes:
+        df[column_name] = df[column_name].str.replace(suffix, '')
+
+    if bracket_content:
+        new_column_name = f"{column_name} ({bracket_content})"
+    else:
+        new_column_name = column_name
+    
+    
+    new_column_name = f"{column_name} {bracket_content}"
+    df.rename(columns={column_name: new_column_name}, inplace=True)
+    return df
+
+def remove_prefix(df, column_name, prefix):
+    df[column_name] = df[column_name].str.replace(prefix, '')
+    return df
+
+def dms_to_dd(dms):
+    """
+    Convert degrees, minutes, and seconds (DMS) format to decimal degrees (DD) format.
+
+    Args:
+        dms (str or float): The DMS format string or a float representing decimal degrees.
+
+    Returns:
+        float: The converted value in decimal degrees format.
+        
+    Raises:
+        ValueError: If the input dms is not in a valid format.
+
+    Example:
+        >>> dms_to_dd("45°25'15.6\" N")
+        45.421
+        >>> dms_to_dd(-75.7085)
+        -75.7085
+    """
+    
+    if isinstance(dms, float):
+        return dms  # Return the value unchanged if it's already in decimal degrees format
+    
+    parts = dms.split()
+    degrees = float(parts[0])
+    minutes = float(parts[2][:-1])  # Remove the "'" character from the minutes part
+    seconds = float(parts[3][:-1])  # Remove the '"' character from the seconds part
+    direction = parts[4]
+
+    dd = degrees + minutes / 60 + seconds / 3600
+    if direction in ['S', 'W']:
+        dd *= -1
+
+    return dd 
+
 # Test
 data = pd.read_csv('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv', 
                    index_col=0,
@@ -408,9 +466,11 @@ filtered_data = to_nan(filtered_data, ['Unknown (0)'])
 filtered_data = delete_empty_columns(data, 1-17/177)
 filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
 filtered_data = set_index_from_column(filtered_data, 'FileName')
-filtered_data = focal_length_equivalent(filtered_data)
+# filtered_data = focal_length_equivalent(filtered_data)
 filtered_data = bring_up_measure_units(filtered_data)
 filtered_data = convert_datetime(filtered_data)
 filtered_data = convert_fraction_columns_to_float(filtered_data)
 filtered_data = split_string_column(filtered_data, 'ImageSize', 'ImageWidth', 'ImageHeight')
+
+
 # print(float())
