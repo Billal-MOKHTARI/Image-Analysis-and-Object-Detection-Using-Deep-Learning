@@ -346,6 +346,29 @@ def convert_fraction_columns_to_float(df):
     
     return df
 
+def split_string_column(data, column_name, left_name, right_name, keep=False, separator='x'):
+    """
+    Split a string column into multiple columns based on a separator.
+
+    Parameters:
+    - data: DataFrame, the input dataset
+    - column_name: str, the name of the column to split
+    - separator: str, the separator to split the column on
+
+    Returns:
+    - data: DataFrame, the dataset with the column split into multiple columns
+    """
+    # Split the column into multiple columns based on the separator
+    split_data = data[column_name].str.split(separator, expand=True)
+    
+
+    # Add the new columns to the original dataset
+    data = pd.concat([data, split_data], axis=1)
+    data.rename(columns={0: left_name, 1: right_name}, inplace=True)
+    if not keep:
+        data.drop(columns=[column_name], inplace=True)
+    return data
+
 def permissions_to_int(permissions):
     pass
 
@@ -388,5 +411,5 @@ filtered_data = bring_up_measure_units(filtered_data)
 filtered_data = convert_datetime(filtered_data)
 filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
 filtered_data = convert_fraction_columns_to_float(filtered_data)
-
-print(data.columns[:50])
+filtered_data = split_string_column(filtered_data, 'ImageSize', 'ImageWidth', 'ImageHeight')
+# print(float())
