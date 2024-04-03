@@ -403,13 +403,14 @@ data = pd.read_csv('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detect
                    index_col=0,
                    header=0)
 filtered_data = data.copy()
-filtered_data = set_index_from_column(filtered_data, 'FileName')
+
 filtered_data = to_nan(filtered_data, ['Unknown (0)'])
 filtered_data = delete_empty_columns(data, 1-17/177)
+filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
+filtered_data = set_index_from_column(filtered_data, 'FileName')
 filtered_data = focal_length_equivalent(filtered_data)
 filtered_data = bring_up_measure_units(filtered_data)
 filtered_data = convert_datetime(filtered_data)
-filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
 filtered_data = convert_fraction_columns_to_float(filtered_data)
 filtered_data = split_string_column(filtered_data, 'ImageSize', 'ImageWidth', 'ImageHeight')
 # print(float())
