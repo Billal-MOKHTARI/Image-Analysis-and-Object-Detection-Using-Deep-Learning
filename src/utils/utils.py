@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import constants
 import re
+from fractions import Fraction
+from datetime import datetime
 
 def remove_zero_columns(data):
     """
@@ -135,7 +137,7 @@ def is_matching_regex(data, pattern=constants.unit_regex_pattern):
     
     return bool(re.fullmatch(pattern, data))
 
-def bring_up_measure_units(dataframe):
+def bring_up_measure_units(dataframe, exclude=[]):
     """
     Bring up the measure units from column values to column names.
 
@@ -189,19 +191,202 @@ def bring_up_measure_units(dataframe):
     
     # Iterate through columns
     for col in dataframe.columns:
-        if dataframe[col].dtype != 'object':
-            continue
-        # Extract measure unit from the first non-null cell value in the column
-        measure_unit = extract_measure_unit(dataframe[col].dropna().iloc[0])
-        # Update column name with measure unit
-        dataframe.rename(columns={col: update_column_name(col, measure_unit)}, inplace=True)
+        if col not in exclude and dataframe[col].dtype == 'object':
+            
+            # Extract measure unit from the first non-null cell value in the column
+            measure_unit = extract_measure_unit(dataframe[col].dropna().iloc[0])
+            # Update column name with measure unit
+            dataframe.rename(columns={col: update_column_name(col, measure_unit)}, inplace=True)
     
     return dataframe
 
+def focal_length_equivalent(data, column='FocalLength35efl'):
+    """
+    Calculate the focal length equivalent for a dataset.
+
+    Parameters:
+    - data: DataFrame, the input dataset
+    - column: str, the column name for the focal length equivalent
+    """
+    # Extract the focal length and crop factor from the column name
+    focal_length = data[column]
+
+    parts = focal_length.str.split(' ')
+    focal_length = parts.str[-2:-1][0]
+
+    data[column] = focal_length
+
+    return data
+
+def extract_matching_part(exp, regex):
+    """
+    Extract the part of a string that matches a regular expression.
+
+    Parameters:
+    - exp: str, the input string
+    - regex: str, the regular expression pattern
+
+    Returns:
+    - matched_part: str, the part of the string that matches the regular expression
+    """
+    matched_part = re.search(regex, exp).group(0)
+    return matched_part
+
+def to_nan(data, values=['Unknown (0)']):
+    """
+    Convert specified values to NaN in a DataFrame.
+
+    Parameters:
+    - data: DataFrame, the input dataset
+    - values: list, the values to convert to NaN
+
+    Returns:
+    - data: DataFrame, the dataset with specified values converted to NaN
+    """
+    data.replace(values, np.nan, inplace=True)
+    return data
+
+def first_valid_value(data):
+    """
+    Find the first valid value in a DataFrame.
+
+    Parameters:
+    - data: Series, the input dataset
+
+    Returns:
+    - first_valid_value: any, the first valid value in the dataset
+    """
+    # Get the index of the first non-NaN value
+    index = data.first_valid_index()
+
+    # If the series is not entirely composed of NaN values
+    if index is not None:
+        # Return the first non-NaN value
+        return data.loc[index]
+    else:
+        return None
+
+def convert_to_datetime(datetime_str, date_format = "%d/%m/%Y %H:%M:%S %z"):
+    # Define the format of the input datetime string
+
+    try:
+        # Convert the string to a datetime object
+        datetime_object = datetime.strptime(datetime_str, date_format)
+        return datetime_object
+    except ValueError:
+        # Handle invalid datetime string
+        print("Invalid datetime format. Please provide datetime in format DD/MM/YYYY hh:mm:ss +01:00")
+        return None
+
+def convert_datetime(data, regex_from=r'\d{4}:\d{2}:\d{2} (\d{2}:\d{2}:\d{2})?(\+\d{2}:\d{2})?'):
+
+    columns = data.columns
+    columns_to_convert = [col for col in columns if is_matching_regex(str(first_valid_value(data[col])), regex_from)]
+    with_tz = [col for col in columns_to_convert if re.search(r'\+\d{2}:\d{2}', str(first_valid_value(data[col])))]
+    without_tz = [col for col in columns_to_convert if col not in with_tz]
+    date_only_matching = [col for col in columns if is_matching_regex(str(first_valid_value(data[col])), r'\d{4}:\d{2}:\d{2}')]
+
+
+    for col in without_tz:
+        # Convert the column to datetime format
+        data[col] = pd.to_datetime(data[col], format='%Y:%m:%d %H:%M:%S', errors='coerce')
+        # Change the datetime format to 'DD/MM/YYYY hh:mm:ss'
+        data[col] = data[col].dt.strftime('%d/%m/%Y %H:%M:%S')
+
+    for col in with_tz:
+        format = "%d/%m/%Y %H:%M:%S %z"
+
+        datetime_part = data[col].str.extract(r'(\d{4}:\d{2}:\d{2} \d{2}:\d{2}:\d{2})')[0]
+        timezone_part = data[col].str.extract(r'(\+\d{2}:\d{2})')[0]
+        
+        datetime_part = pd.to_datetime(datetime_part, format='%Y:%m:%d %H:%M:%S', errors='coerce')
+        datetime_part = datetime_part.dt.strftime('%d/%m/%Y %H:%M:%S')
+
+        data[col] = datetime_part + ' ' +timezone_part
+        data[col] = data[col].apply(lambda x: convert_to_datetime(x, date_format=format))
+
+    for col in date_only_matching:
+        data[col] = pd.to_datetime(data[col], format='%Y:%m:%d', errors='coerce')
+        data[col] = data[col].dt.strftime('%d/%m/%Y')
+
+
+    return data
+
+def drop_columns(data, columns):
+    """
+    Drop columns from a DataFrame.
+
+    Parameters:
+    - data: DataFrame, the input dataset
+    - columns: list, the columns to drop
+
+    Returns:
+    - data: DataFrame, the dataset with specified columns dropped
+    """
+    data.drop(columns=columns, inplace=True)
+    return data
+
+def convert_fraction_columns_to_float(df):
+    # Function to convert string fractions to floats
+    def string_fraction_to_float(fraction_str):
+        try:
+            fraction = Fraction(fraction_str)
+            return float(fraction)
+        except ValueError:
+            return fraction_str  # Return original value if it cannot be converted
+    
+    # Iterate over each column in the DataFrame
+    for col in df.columns:
+        if df[col].dtype == 'object':  # Check if column type is string
+            try:
+                # Try converting all values in the column to float
+                df[col] = df[col].apply(string_fraction_to_float)
+            except Exception as e:
+                print(f"Error converting column '{col}': {e}")
+    
+    return df
+
+def permissions_to_int(permissions):
+    pass
+
+def set_index_from_column(data, column_name, index_name=None):
+    """
+    Set the index of the DataFrame using the specified column.
+
+    Parameters:
+    - data: DataFrame
+        The DataFrame for which the index should be set.
+    - column_name: str
+        The name of the column to be used as the index.
+    - index_name: str, optional
+        The name to be assigned to the index. If None, no name is assigned.
+
+    Returns:
+    - DataFrame
+        The DataFrame with the specified column set as the index.
+    """
+    if column_name not in data.columns:
+        print(column_name)
+        print(f"Column '{column_name}' not found in DataFrame.")
+        return data
+    else:
+        data.set_index(column_name, inplace=True)
+        if index_name:
+            data.index.name = index_name
+        return data
+
+# Test
 data = pd.read_csv('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv', 
                    index_col=0,
                    header=0)
-# print(data['GainControl'].astype(str).iloc[1:13])
+filtered_data = data.copy()
+filtered_data = set_index_from_column(filtered_data, 'FileName')
+filtered_data = to_nan(filtered_data, ['Unknown (0)'])
 filtered_data = delete_empty_columns(data, 1-17/177)
-transformed_data = bring_up_measure_units(filtered_data)
-print(transformed_data.columns)
+filtered_data = focal_length_equivalent(filtered_data)
+filtered_data = bring_up_measure_units(filtered_data)
+filtered_data = convert_datetime(filtered_data)
+filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
+filtered_data = convert_fraction_columns_to_float(filtered_data)
+
+print(data.columns[:50])

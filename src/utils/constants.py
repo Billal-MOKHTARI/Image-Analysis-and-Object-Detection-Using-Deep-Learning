@@ -36,7 +36,8 @@ VALID_UNITS = [
     # Ancient units
     'cubit', 'digit', 'palm', 'hand', 'span', 'foot', 'step', 'mile', 'league',
     'talent', 'mina', 'shekel', 'gerah',
-    'DX', 'DmkIII', 'DmkIV', 'DmkV', 'DmkVI', 'DmkVII', 'DmkVIII', 'DmkIX', 'DmkX', 'd'
+    'DX', 'DmkIII', 'DmkIV', 'DmkV', 'DmkVI', 'DmkVII', 'DmkVIII', 'DmkIX', 'DmkX', 'd',
+    'b', 'kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb',  # Data
 ]
 
 # Constructing the regex pattern
