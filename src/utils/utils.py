@@ -86,6 +86,29 @@ def degree(adjacency_matrix):
     degrees = adjacency_matrix.sum(axis=1)
     return pd.DataFrame({"Node":degrees.index, "degree":degrees.tolist()})
 
+def extract_diagonal(matrix_df, column_names):
+    """
+    Extracts the index of a squared matrix DataFrame and its diagonal values.
+
+    Parameters:
+    - matrix_df: DataFrame, the squared matrix DataFrame
+
+    Returns:
+    - diagonal_df: DataFrame, a DataFrame containing the index and diagonal values
+    """
+    # Get the index of the matrix
+    index = matrix_df.index
+    
+    # Extract the diagonal values
+    diagonal_values = matrix_df.values.diagonal()
+    
+    # Create a DataFrame with index and diagonal values
+    dict_data = {column_names[0]: index, column_names[1]: diagonal_values}
+    diagonal_df = pd.DataFrame(dict_data)
+    
+    return diagonal_df
+
+
 # Metadata preprocessing helper functions
 def is_matching_regex(data, pattern):
     """

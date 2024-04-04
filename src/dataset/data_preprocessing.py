@@ -221,9 +221,53 @@ class DataPreprocessing:
     def remove_prefix(self, column_name, prefix):
         self.data[column_name] = self.data[column_name].str.replace(prefix, '')
     
+    def gps_dms_to_dd(self, include=None, exclude=None):
+        self.include_exclude_assertions(include, exclude)
+
+        def dms_to_dd(dms):
+            """
+            Convert degrees, minutes, and seconds (DMS) format to decimal degrees (DD) format.
+
+            Args:
+                dms (str or float): The DMS format string or a float representing decimal degrees.
+
+            Returns:
+                float: The converted value in decimal degrees format.
+                
+            Raises:
+                ValueError: If the input dms is not in a valid format.
+
+            Example:
+                >>> dms_to_dd("45°25'15.6\" N")
+                45.421
+                >>> dms_to_dd(-75.7085)
+                -75.7085
+            """
+            
+            if isinstance(dms, float):
+                return dms  # Return the value unchanged if it's already in decimal degrees format
+        
+            parts = dms.split()
+            degrees = float(parts[0])
+            minutes = float(parts[2][:-1])  # Remove the "'" character from the minutes part
+            seconds = float(parts[3][:-1])  # Remove the '"' character from the seconds part
+            direction = parts[4]
+
+            dd = degrees + minutes / 60 + seconds / 3600
+            if direction in ['S', 'W']:
+                dd *= -1
+
+            return dd 
+        float_reg = r'[-+]?[0-9]*\.?[0-9]+'
+        format_reg = rf"{float_reg}\s?deg\s?{float_reg}'\s?{float_reg}\"\s?[NSWE]"
+        columns_to_convert = [col for col in self.data.columns if utils.is_matching_regex(str(utils.first_valid_value(self.data[col])), format_reg)]
+
+        for col in columns_to_convert:
+            if self.include_exclude_entry_condition(col, include, exclude):
+                self.data[col] = self.data[col].apply(dms_to_dd)
+        
+
 
 data = pd.read_csv("/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv")
 dpp = DataPreprocessing(data)
 dpp.delete_empty_columns(1-17/177)
-dpp.convert_datetime(include=['CreateDate'])
-print(data['CreateDate'])
