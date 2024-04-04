@@ -101,7 +101,7 @@ def degree(adjacency_matrix):
     degrees = adjacency_matrix.sum(axis=1)
     return pd.DataFrame({"Node":degrees.index, "degree":degrees.tolist()})
 
-def delete_empty_columns(data, threshold, delete_by=['nan']):
+def delete_empty_columns(data, threshold, delete_by=['Unknown (0)']):
     """
     Delete columns with a percentage of zeros greater than the threshold.
 
@@ -112,15 +112,17 @@ def delete_empty_columns(data, threshold, delete_by=['nan']):
     Returns:
     - filtered_data: DataFrame, the filtered dataset
     """
+    for val in delete_by:
+        data.replace(val, np.nan, inplace=True)
+    
     columns_to_delete = []
     for col in data.columns:
         for val in delete_by:
-            values = data[col].astype(str)
-            percentage = values[values == val].count() / len(values)
+            percentage = data[col].isnull().sum() / len(data[col])
             if percentage > threshold:
                 columns_to_delete.append(col)
     data.drop(columns=columns_to_delete, inplace=True)
-
+    
     return data
 
 def is_matching_regex(data, pattern=constants.unit_regex_pattern):
@@ -232,19 +234,7 @@ def extract_matching_part(exp, regex):
     matched_part = re.search(regex, exp).group(0)
     return matched_part
 
-def to_nan(data, values=['Unknown (0)']):
-    """
-    Convert specified values to NaN in a DataFrame.
 
-    Parameters:
-    - data: DataFrame, the input dataset
-    - values: list, the values to convert to NaN
-
-    Returns:
-    - data: DataFrame, the dataset with specified values converted to NaN
-    """
-    data.replace(values, np.nan, inplace=True)
-    return data
 
 def first_valid_value(data):
     """
@@ -421,40 +411,49 @@ def remove_prefix(df, column_name, prefix):
     df[column_name] = df[column_name].str.replace(prefix, '')
     return df
 
-def dms_to_dd(dms):
-    """
-    Convert degrees, minutes, and seconds (DMS) format to decimal degrees (DD) format.
+def gps_dms_to_dd(data):
+    def dms_to_dd(dms):
+        """
+        Convert degrees, minutes, and seconds (DMS) format to decimal degrees (DD) format.
 
-    Args:
-        dms (str or float): The DMS format string or a float representing decimal degrees.
+        Args:
+            dms (str or float): The DMS format string or a float representing decimal degrees.
 
-    Returns:
-        float: The converted value in decimal degrees format.
+        Returns:
+            float: The converted value in decimal degrees format.
+            
+        Raises:
+            ValueError: If the input dms is not in a valid format.
+
+        Example:
+            >>> dms_to_dd("45°25'15.6\" N")
+            45.421
+            >>> dms_to_dd(-75.7085)
+            -75.7085
+        """
         
-    Raises:
-        ValueError: If the input dms is not in a valid format.
-
-    Example:
-        >>> dms_to_dd("45°25'15.6\" N")
-        45.421
-        >>> dms_to_dd(-75.7085)
-        -75.7085
-    """
+        if isinstance(dms, float):
+            return dms  # Return the value unchanged if it's already in decimal degrees format
     
-    if isinstance(dms, float):
-        return dms  # Return the value unchanged if it's already in decimal degrees format
+        parts = dms.split()
+        degrees = float(parts[0])
+        minutes = float(parts[2][:-1])  # Remove the "'" character from the minutes part
+        seconds = float(parts[3][:-1])  # Remove the '"' character from the seconds part
+        direction = parts[4]
+
+        dd = degrees + minutes / 60 + seconds / 3600
+        if direction in ['S', 'W']:
+            dd *= -1
+
+        return dd 
+    float_reg = r'[-+]?[0-9]*\.?[0-9]+'
+    format_reg = rf"{float_reg}\s?deg\s?{float_reg}'\s?{float_reg}\"\s?[NSWE]"
+    columns_to_convert = [col for col in data.columns if is_matching_regex(str(first_valid_value(data[col])), format_reg)]
+
+    for col in columns_to_convert:
+        data[col] = data[col].apply(dms_to_dd)
     
-    parts = dms.split()
-    degrees = float(parts[0])
-    minutes = float(parts[2][:-1])  # Remove the "'" character from the minutes part
-    seconds = float(parts[3][:-1])  # Remove the '"' character from the seconds part
-    direction = parts[4]
-
-    dd = degrees + minutes / 60 + seconds / 3600
-    if direction in ['S', 'W']:
-        dd *= -1
-
-    return dd 
+    return data
 
 # Test
 data = pd.read_csv('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv', 
@@ -462,7 +461,6 @@ data = pd.read_csv('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detect
                    header=0)
 filtered_data = data.copy()
 
-filtered_data = to_nan(filtered_data, ['Unknown (0)'])
 filtered_data = delete_empty_columns(data, 1-17/177)
 filtered_data = drop_columns(filtered_data, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
 filtered_data = set_index_from_column(filtered_data, 'FileName')
@@ -471,6 +469,6 @@ filtered_data = bring_up_measure_units(filtered_data)
 filtered_data = convert_datetime(filtered_data)
 filtered_data = convert_fraction_columns_to_float(filtered_data)
 filtered_data = split_string_column(filtered_data, 'ImageSize', 'ImageWidth', 'ImageHeight')
-
-
-# print(float())
+filtered_data = gps_dms_to_dd(filtered_data)
+filtered_data = modify_column(filtered_data, 'YCbCrSubSampling', ['YCbCr'], ['\(\d+ \d+\)'], None)
+filtered_data = remove_prefix(filtered_data, 'MIMEType', 'image/')

@@ -98,5 +98,16 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     return obj_co_occ_list, img_co_occ_list
 
-# def preprocess_image_metadata(metatada_path, save_path, **kwargs):
-#     pass
+def preprocess_image_metadata(metatada_path, save_path=None):
+    metadata = pd.read_csv(metatada_path, header=0, index_col=0)
+
+    utils.to_nan(metadata, ['Unknown (0)'])
+    utils.delete_empty_columns(metadata, 1-17/177)
+    utils.drop_columns(metadata, columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
+    utils.set_index_from_column(metadata, 'FileName')
+    # utils.focal_length_equivalent(metadata)
+    utils.bring_up_measure_units(metadata)
+    utils.convert_datetime(metadata)
+    utils.convert_fraction_columns_to_float(metadata)
+    utils.split_string_column(metadata, 'ImageSize', 'ImageWidth', 'ImageHeight')
+    pass

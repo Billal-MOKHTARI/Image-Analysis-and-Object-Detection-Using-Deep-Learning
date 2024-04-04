@@ -1,0 +1,15 @@
+{
+    "data_path": "../data/output/metadata/image_metadata.csv",
+    "delete_empty_columns": {
+        "threshold": 0.09604519774,
+        "delete_by": ["Unknown (0)"]
+    },
+    "drop_columns": {
+        "columns": ["Directory", "FocalLength35efl", "GPSDateTime", "GPSPosition"]
+    },
+    "set_index_from_column": {
+        "index_column": "FileName",
+        "index_name": "FileName"
+    },
+    
+}
