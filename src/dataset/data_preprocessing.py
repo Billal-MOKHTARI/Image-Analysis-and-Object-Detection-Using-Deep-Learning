@@ -5,8 +5,7 @@ import re
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from utils import utils
-
+from utils import utils, constants
 class DataPreprocessing:
     def __init__(self, data: pd.DataFrame):
         self.data = data
@@ -52,7 +51,7 @@ class DataPreprocessing:
             if index_name:
                 self.data.index.name = index_name
 
-    def delete_empty_columns(self, threshold, delete_by, include=None, exclude=None):
+    def delete_empty_columns(self, threshold, delete_by=None, include=None, exclude=None):
         """
         Delete columns with a percentage of zeros greater than the threshold.
 
@@ -65,17 +64,19 @@ class DataPreprocessing:
         """
         self.include_exclude_assertions(include, exclude)
 
-        for val in delete_by:
-            self.data.replace(val, np.nan, inplace=True)
+        if delete_by is not None:
+            for val in delete_by:
+                self.data.replace(val, np.nan, inplace=True)
         
         columns_to_delete = []
         for col in self.data.columns:
             if self.include_exclude_entry_condition(col, include, exclude):
-                for val in delete_by:
-                    percentage = self.data[col].isnull().sum() / len(self.data[col])
-                    if percentage > threshold:
-                        columns_to_delete.append(col)
+                
+                percentage = self.data[col].isnull().sum() / len(self.data[col])
+                if percentage > threshold:
+                    columns_to_delete.append(col)
         self.data.drop(columns=columns_to_delete, inplace=True)
+        
 
     def bring_up_measure_units(self, include=None, exclude=None):
         """
@@ -122,7 +123,7 @@ class DataPreprocessing:
             """
             if measure_unit:
                 # Check if the measure unit matches the regex pattern
-                if utils.is_matching_regex(measure_unit):
+                if utils.is_matching_regex(measure_unit, constants.unit_regex_pattern):
                     # If it does, add the measure unit in parenthesis
                     return f'{col_name} ({measure_unit})'
                 else:
@@ -133,13 +134,11 @@ class DataPreprocessing:
         
         # Iterate through columns
         for col in self.data.columns:
-            if self.include_exclude_entry_condition(col, include, exclude):
-                if col not in exclude and self.data[col].dtype == 'object':
-                    
-                    # Extract measure unit from the first non-null cell value in the column
-                    measure_unit = extract_measure_unit(self.data[col].dropna().iloc[0])
-                    # Update column name with measure unit
-                    self.data.rename(columns={col: update_column_name(col, measure_unit)}, inplace=True)
+            if self.include_exclude_entry_condition(col, include, exclude) and self.data[col].dtype == 'object':     
+                # Extract measure unit from the first non-null cell value in the column
+                measure_unit = extract_measure_unit(self.data[col].dropna().iloc[0])
+                # Update column name with measure unit
+                self.data.rename(columns={col: update_column_name(col, measure_unit)}, inplace=True)
         
         return self.data
     
@@ -223,10 +222,8 @@ class DataPreprocessing:
         self.data[column_name] = self.data[column_name].str.replace(prefix, '')
     
 
-
+data = pd.read_csv("/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv")
 dpp = DataPreprocessing(data)
 dpp.delete_empty_columns(1-17/177)
-filtered_data = drop_columns(columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
-filtered_data = set_index_from_column('FileName')
-# filtered_data = focal_length_equivalent(filtered_data)
-filtered_data = bring_up_measure_units()
+dpp.convert_datetime(include=['CreateDate'])
+print(data['CreateDate'])
