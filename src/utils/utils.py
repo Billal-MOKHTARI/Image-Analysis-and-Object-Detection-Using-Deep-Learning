@@ -178,7 +178,7 @@ def convert_to_datetime(datetime_str, date_format = "%d/%m/%Y %H:%M:%S %z"):
 def permissions_to_int(permissions):
     pass
 
-def load_json_file(file_path):
+def load_json_file_from_path(file_path):
     """
     Load a JSON file.
 
@@ -205,6 +205,16 @@ def load_json_file_from_url(url):
     response = urlopen(url)
     data_json = json.loads(response.read())
     return data_json
+
+def load_json_file(file_path):
+    try:
+        if is_url(file_path):
+            return load_json_file_from_url(file_path)
+        else:
+            return load_json_file_from_path(file_path)
+    except Exception as e:
+        print(f"Error loading JSON file: {e}")
+        return None
 
 def is_url(path):
     """

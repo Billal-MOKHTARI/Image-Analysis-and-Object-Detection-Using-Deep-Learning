@@ -1,6 +1,6 @@
 import sys
 import os
-
+import json
 # Add the parent directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
@@ -48,6 +48,7 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
                                         neighbor_name="Neighbor",
                                         weight_name="Weight",
                                         save = True,
+                                        graphxr_dataset_configs_path=None,
                                         **kwargs):
 
     # Read label categories and annotation matrix
@@ -95,10 +96,18 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     img_node_features = add_prefix_suffix(img_node_features, prefix=img_prefix)
     img_co_occ_list = add_prefix_suffix(img_co_occ_list, prefix=img_prefix)
 
-    obj_img_occ = utils.matrix_to_list(obj_annot_mat, node_name=img_prefix+node_name, neighbor_name=obj_prefix+node_name, weight_name=weight_name)
+    obj_img_occ_list = utils.matrix_to_list(obj_annot_mat, node_name=img_prefix+node_name, neighbor_name=obj_prefix+node_name, weight_name=weight_name)
 
-
-
+    # Save the dataset
+    if save:
+        configs = utils.load_json_file(graphxr_dataset_configs_path)
+        save_configs = configs["save_paths"]
+        index_configs = configs["indexes"]
+        obj_node_features.to_csv(save_configs["object_node_features"], index=index_configs["obj_node_features"])
+        obj_co_occ_list.to_csv(save_configs["object_co_occ_list"], index=index_configs["obj_co_occ_list"])
+        img_node_features.to_csv(save_configs["image_node_features"], index=index_configs["img_node_features"])
+        img_co_occ_list.to_csv(save_configs["image_co_occ_list"], index=index_configs["img_co_occ_list"])
+        obj_img_occ_list.to_csv(save_configs["object_image_co_occ_list"], index=index_configs["obj_img_co_occ_list"])
 
     return obj_co_occ_list, img_co_occ_list
 
