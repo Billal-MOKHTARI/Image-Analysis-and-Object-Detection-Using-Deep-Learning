@@ -86,6 +86,7 @@ def degree(adjacency_matrix):
     degrees = adjacency_matrix.sum(axis=1)
     return pd.DataFrame({"Node":degrees.index, "degree":degrees.tolist()})
 
+# Metadata preprocessing helper functions
 def is_matching_regex(data, pattern):
     """
     Match a regular expression pattern to the values in a DataFrame.

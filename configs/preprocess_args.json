@@ -1,9 +1,11 @@
 {
   "data_path": "../data/output/metadata/image_metadata.csv",
-  "pipeline": {
+  "pipeline arguments": {
     "delete_empty_columns": {
-      "threshold": 0.09604519774,
-      "delete_by": ["Unknown (0)"]
+      "threshold": 0.90395480226,
+      "delete_by": ["Unknown (0)"],
+      "include": null,
+      "exclude": null
     },
     "drop_columns": {
       "columns": ["Directory", "FocalLength35efl", "GPSDateTime", "GPSPosition"]
@@ -13,13 +15,17 @@
       "index_name": "FileName"
     },
     "bring_up_measure_units": {
-      "exclude": []
+      "include": null,
+      "exclude": null
     },
     "convert_datetime": {
-      "regex_from": ["_d{4}:_d{2}:_d{2} (_d{2}:_d{2}:_d{2})?(_+_d{2}:_d{2})?"]
+      "regex_from": ["_d{4}:_d{2}:_d{2} (_d{2}:_d{2}:_d{2})?(_+_d{2}:_d{2})?"],
+      "include": null,
+      "exclude": null
     },
     "convert_fraction_columns_to_float": {
-      "exclude": []
+      "include": null,
+      "exclude": null
     },
     "split_string_column": {
       "column_name": "ImageSize",
@@ -27,7 +33,10 @@
       "keep": false,
       "separator": "x"
     },
-    "gps_dms_to_dd": {},
+    "gps_dms_to_dd": {
+        "include": null,
+        "exclude": null
+    },
     "modify_column": {
       "column_name": "'YCbCrSubSampling'",
       "possible_prefixes": ["YCbCr"],
