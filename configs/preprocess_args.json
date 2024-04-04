@@ -19,7 +19,7 @@
       "exclude": null
     },
     "convert_datetime": {
-      "regex_from": ["_d{4}:_d{2}:_d{2} (_d{2}:_d{2}:_d{2})?(_+_d{2}:_d{2})?"],
+      "regex_from": ["\\d{4}:\\d{2}:\\d{2} (\\d{2}:\\d{2}:\\d{2})?(\\+\\d{2}:\\d{2})?"],
       "include": null,
       "exclude": null
     },
@@ -40,7 +40,7 @@
     "modify_column": {
       "column_name": "'YCbCrSubSampling'",
       "possible_prefixes": ["YCbCr"],
-      "possible_suffixes": ["_(_d+ _d+_)"],
+      "possible_suffixes": ["\\(\\d+ \\d+\\)"],
       "bracket_content": null
     },
     "remove_prefix": {

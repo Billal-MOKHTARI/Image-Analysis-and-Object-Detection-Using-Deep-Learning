@@ -53,7 +53,7 @@ def calculate_co_occurrence_matrix(data):
     co_occurrence_matrix = co_occurrence_matrix.astype(int)
     return co_occurrence_matrix
 
-def matrix_to_list(adj_matrix_df):
+def matrix_to_list(adj_matrix_df, node_name = 'Node', neighbor_name = 'Neighbor', weight_name = 'Weight'):
     """
     Converts an adjacency matrix DataFrame to an adjacency list DataFrame.
 
@@ -63,15 +63,15 @@ def matrix_to_list(adj_matrix_df):
     Returns:
     - adj_list_df: a pandas DataFrame representing the adjacency list
     """
-    adj_list = {'Node': [], 'Neighbor': [], 'Weight': []}
+    adj_list = {node_name: [], neighbor_name: [], weight_name: []}
     for i in range(len(adj_matrix_df)):
         node = adj_matrix_df.index[i]
         neighbors = list(adj_matrix_df.columns[adj_matrix_df.iloc[i] != 0])
         for neighbor in neighbors:
             weight = adj_matrix_df.loc[node, neighbor]
-            adj_list['Node'].append(node)
-            adj_list['Neighbor'].append(neighbor)
-            adj_list['Weight'].append(weight)
+            adj_list[node_name].append(node)
+            adj_list[neighbor_name].append(neighbor)
+            adj_list[weight_name].append(weight)
     adj_list_df = pd.DataFrame(adj_list)
     return adj_list_df
 
