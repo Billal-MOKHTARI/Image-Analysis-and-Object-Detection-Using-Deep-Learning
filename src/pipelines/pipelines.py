@@ -61,6 +61,7 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     # Calculate co-occurrence matrix and convert to list
     obj_co_occ_matrix = utils.calculate_co_occurrence_matrix(obj_annot_mat)
+    print(obj_co_occ_matrix)
     obj_co_occ_list = utils.matrix_to_list(obj_co_occ_matrix, node_name=node_name, neighbor_name=neighbor_name, weight_name=weight_name)
 
     # Identify TT relationships
@@ -97,12 +98,12 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     obj_img_occ = utils.matrix_to_list(obj_annot_mat, node_name=img_prefix+node_name, neighbor_name=obj_prefix+node_name, weight_name=weight_name)
 
-    # Save the dataset
-    if save:
-        obj_co_occ_list.to_csv("obj_co_occ_list.csv", index=False)
-        obj_node_features.to_csv("obj_node_features.csv", index=False)
-        img_co_occ_list.to_csv("img_co_occ_list.csv", index=False)
-        img_node_features.to_csv("img_node_features.csv", index=False)
+    print(obj_node_features.head())
+    print(obj_co_occ_list.head())
+    print(img_node_features.head())
+    print(img_co_occ_list.head())
+    print(obj_img_occ.head())
+
 
     return obj_co_occ_list, img_co_occ_list
 
