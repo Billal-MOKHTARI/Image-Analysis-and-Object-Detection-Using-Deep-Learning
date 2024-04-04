@@ -316,7 +316,7 @@ def drop_columns(data, columns):
     data.drop(columns=columns, inplace=True)
     return data
 
-def convert_fraction_columns_to_float(df):
+def convert_fraction_columns_to_float(df, exclude=[]):
     # Function to convert string fractions to floats
     def string_fraction_to_float(fraction_str):
         try:
@@ -327,16 +327,17 @@ def convert_fraction_columns_to_float(df):
     
     # Iterate over each column in the DataFrame
     for col in df.columns:
-        if df[col].dtype == 'object':  # Check if column type is string
-            try:
-                # Try converting all values in the column to float
-                df[col] = df[col].apply(string_fraction_to_float)
-            except Exception as e:
-                print(f"Error converting column '{col}': {e}")
+        if col not in exclude:
+            if df[col].dtype == 'object':  # Check if column type is string
+                try:
+                    # Try converting all values in the column to float
+                    df[col] = df[col].apply(string_fraction_to_float)
+                except Exception as e:
+                    print(f"Error converting column '{col}': {e}")
     
     return df
 
-def split_string_column(data, column_name, left_name, right_name, keep=False, separator='x'):
+def split_string_column(data, column_name, new_column_names, keep=False, separator='x'):
     """
     Split a string column into multiple columns based on a separator.
 
@@ -354,7 +355,9 @@ def split_string_column(data, column_name, left_name, right_name, keep=False, se
 
     # Add the new columns to the original dataset
     data = pd.concat([data, split_data], axis=1)
-    data.rename(columns={0: left_name, 1: right_name}, inplace=True)
+
+    dict_names = {i: new_column_names[i] for i in range(len(new_column_names))}
+    data.rename(columns=dict_names, inplace=True)
     if not keep:
         data.drop(columns=[column_name], inplace=True)
     return data
@@ -468,7 +471,7 @@ filtered_data = set_index_from_column(filtered_data, 'FileName')
 filtered_data = bring_up_measure_units(filtered_data)
 filtered_data = convert_datetime(filtered_data)
 filtered_data = convert_fraction_columns_to_float(filtered_data)
-filtered_data = split_string_column(filtered_data, 'ImageSize', 'ImageWidth', 'ImageHeight')
+filtered_data = split_string_column(filtered_data, 'ImageSize', ['ImageWidth', 'ImageHeight'])
 filtered_data = gps_dms_to_dd(filtered_data)
 filtered_data = modify_column(filtered_data, 'YCbCrSubSampling', ['YCbCr'], ['\(\d+ \d+\)'], None)
 filtered_data = remove_prefix(filtered_data, 'MIMEType', 'image/')

@@ -1,15 +1,42 @@
 {
-    "data_path": "../data/output/metadata/image_metadata.csv",
+  "data_path": "../data/output/metadata/image_metadata.csv",
+  "pipeline": {
     "delete_empty_columns": {
-        "threshold": 0.09604519774,
-        "delete_by": ["Unknown (0)"]
+      "threshold": 0.09604519774,
+      "delete_by": ["Unknown (0)"]
     },
     "drop_columns": {
-        "columns": ["Directory", "FocalLength35efl", "GPSDateTime", "GPSPosition"]
+      "columns": ["Directory", "FocalLength35efl", "GPSDateTime", "GPSPosition"]
     },
     "set_index_from_column": {
-        "index_column": "FileName",
-        "index_name": "FileName"
+      "index_column": "FileName",
+      "index_name": "FileName"
     },
-    
+    "bring_up_measure_units": {
+      "exclude": []
+    },
+    "convert_datetime": {
+      "regex_from": ["_d{4}:_d{2}:_d{2} (_d{2}:_d{2}:_d{2})?(_+_d{2}:_d{2})?"]
+    },
+    "convert_fraction_columns_to_float": {
+      "exclude": []
+    },
+    "split_string_column": {
+      "column_name": "ImageSize",
+      "new_column_names": ["ImageWidth", "ImageHeight"],
+      "keep": false,
+      "separator": "x"
+    },
+    "gps_dms_to_dd": {},
+    "modify_column": {
+      "column_name": "'YCbCrSubSampling'",
+      "possible_prefixes": ["YCbCr"],
+      "possible_suffixes": ["_(_d+ _d+_)"],
+      "bracket_content": null
+    },
+    "remove_prefix": {
+      "column_name": "MIMEType",
+      "prefix": "image/"
+    }
+  }
 }
