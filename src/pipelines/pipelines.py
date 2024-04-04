@@ -61,7 +61,6 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     # Calculate co-occurrence matrix and convert to list
     obj_co_occ_matrix = utils.calculate_co_occurrence_matrix(obj_annot_mat)
-    print(obj_co_occ_matrix)
     obj_co_occ_list = utils.matrix_to_list(obj_co_occ_matrix, node_name=node_name, neighbor_name=neighbor_name, weight_name=weight_name)
 
     # Identify TT relationships
@@ -98,16 +97,12 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 
     obj_img_occ = utils.matrix_to_list(obj_annot_mat, node_name=img_prefix+node_name, neighbor_name=obj_prefix+node_name, weight_name=weight_name)
 
-    print(obj_node_features.head())
-    print(obj_co_occ_list.head())
-    print(img_node_features.head())
-    print(img_co_occ_list.head())
-    print(obj_img_occ.head())
+
 
 
     return obj_co_occ_list, img_co_occ_list
 
-annot_path = "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/1. annotations.csv"
+annot_path = "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv"
 label_categories_path = "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv"
 base_url = "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/"
 create_co_occurrence_graphxr_dataset(annot_path, label_categories_path, base_url)

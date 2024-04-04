@@ -43,13 +43,13 @@ def calculate_co_occurrence_matrix(data):
     """
     co_occurrence_matrix = pd.DataFrame(index=data.columns, columns=data.columns, dtype=int).fillna(0)
     for _, row in data.iterrows():
-        for i in range(len(data.columns)):
-            for j in range(len(data.columns)):
-                if i != j and row[data.columns[i]] != 0 and row[data.columns[j]] != 0:
-                    co_occurrence_matrix.at[data.columns[i], data.columns[j]] += 1
-        for i in range(len(data.columns)):
-            if row[data.columns[i]] != 0:
-                co_occurrence_matrix.at[data.columns[i], data.columns[i]] += 1
+        for col_i in data.columns:
+            for col_j in data.columns:
+                if col_i != col_j and row[col_i] != 0 and row[col_j] != 0:
+                    co_occurrence_matrix.loc[col_i, col_j] += 1
+        for col in data.columns:
+            if row[col] != 0:
+                co_occurrence_matrix.loc[col, col] += 1
     co_occurrence_matrix = co_occurrence_matrix.astype(int)
     return co_occurrence_matrix
 
