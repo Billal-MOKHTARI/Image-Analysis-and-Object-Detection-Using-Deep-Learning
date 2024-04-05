@@ -139,10 +139,3 @@ def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
     return obj_co_occ_list, img_co_occ_list
 
 create_co_occurrence_graphxr_dataset('/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/configs/graphxr_input_configs.json')
-# annot_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv"
-# label_categories_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv"
-# base_url = "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/"
-# graphxr_dataset_configs_path = '/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/configs/graphxr_dataset.json'
-# create_co_occurrence_graphxr_dataset(annot_path, label_categories_path, base_url, graphxr_dataset_configs_path=graphxr_dataset_configs_path)
-
-
