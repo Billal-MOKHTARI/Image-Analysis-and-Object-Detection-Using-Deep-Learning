@@ -72,25 +72,42 @@
     "save_paths": {
       "obj_node_features": {
         "path": "data/output/graphxr_datasets/obj_node_features.csv",
-        "index": false
+        "index": false,
+        "make_it_temporary": false
       },
       "obj_co_occ_list": {
         "path": "data/output/graphxr_datasets/obj_co_occ_list.csv",
-        "index": false
+        "index": false,
+        "make_it_temporary": false
+
       },
       "img_node_features": {
         "path": "data/output/graphxr_datasets/img_node_features.csv",
-        "index": false
+        "index": false,
+        "make_it_temporary": false
       },
       "img_co_occ_list": {
         "path": "data/output/graphxr_datasets/img_co_occ_list.csv",
-        "index": false
+        "index": false,
+        "make_it_temporary": false
       },
       "obj_img_occ_list": {
         "path": "data/output/graphxr_datasets/obj_img_occ_list.csv",
-        "index": false
+        "index": false,
+        "make_it_temporary": false
+      },
+      "obj_co_occ_matrix": {
+        "path": "data/output/graphxr_datasets/obj_co_occ_matrix.csv",
+        "index": true,
+        "make_it_temporary": true
+      },
+      "img_co_occ_matrix": {
+        "path": "data/output/graphxr_datasets/img_co_occ_matrix.csv",
+        "index": true,
+        "make_it_temporary": true
       }
     },
-    "save_data": true
+    "save_data": true,
+    "temporary_folder": "data/.temp"
   }
 }

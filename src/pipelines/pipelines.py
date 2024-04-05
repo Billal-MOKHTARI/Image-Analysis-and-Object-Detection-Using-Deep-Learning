@@ -6,6 +6,13 @@ from fractions import Fraction
 from utils import utils, scrapper
 import pandas as pd
 
+def create_folder(folder_path):
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Folder '{folder_path}' created successfully.")
+    else:
+        print(f"Folder '{folder_path}' already exists.")
+
 def add_prefix_suffix(dataframe, prefix=None, suffix=None):
     """
     Add prefix and/or suffix to DataFrame column names.
@@ -125,15 +132,56 @@ def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
     # Save the dataset
     if save_data:
         save_configs = data_saver["save_paths"]
+        temporary_folder = use_absolute_path(data_saver["temporary_folder"], use_abs_path)
+        create_folder(temporary_folder)
 
         for key, value in save_configs.items():
             save_configs[key]["path"] = use_absolute_path(value["path"], use_abs_path)
 
-        obj_node_features.to_csv(save_configs["obj_node_features"]["path"], index=save_configs["obj_node_features"]["index"])
-        obj_co_occ_list.to_csv(save_configs["obj_co_occ_list"]["path"], index=save_configs["obj_co_occ_list"]["index"])
-        img_node_features.to_csv(save_configs["img_node_features"]["path"], index=save_configs["img_node_features"]["index"])
-        img_co_occ_list.to_csv(save_configs["img_co_occ_list"]["path"], index=save_configs["img_co_occ_list"]["index"])
-        obj_img_occ_list.to_csv(save_configs["obj_img_occ_list"]["path"], index=save_configs["obj_img_occ_list"]["index"])
+        name = "obj_node_features"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        obj_node_features.to_csv(path, index=save_configs[name]["index"])
+
+        name = "obj_co_occ_list"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        obj_co_occ_list.to_csv(path, index=save_configs[name]["index"])
+
+        name = "img_node_features"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        img_node_features.to_csv(path, index=save_configs[name]["index"])
+
+        name = "img_co_occ_list"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        img_co_occ_list.to_csv(path, index=save_configs[name]["index"])
+
+        name = "obj_img_occ_list"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        obj_img_occ_list.to_csv(path, index=save_configs[name]["index"])
+
+        name = "obj_co_occ_matrix"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        obj_co_occ_matrix.to_csv(path, index=save_configs[name]["index"])
+
+        name = "img_co_occ_matrix"
+        make_it_tmp = save_configs[name]["make_it_temporary"]
+        print(make_it_tmp)
+        print(os.path.join(temporary_folder, os.path.basename(original_path)))
+        original_path = save_configs[name]["path"]
+        path = original_path if not make_it_tmp else os.path.join(temporary_folder, os.path.basename(original_path))
+        img_co_occ_matrix.to_csv(path, index=save_configs[name]["index"])
+
 
 
     return obj_co_occ_list, img_co_occ_list
