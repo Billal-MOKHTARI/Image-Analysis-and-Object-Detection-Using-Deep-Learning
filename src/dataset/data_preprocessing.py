@@ -4,6 +4,7 @@ from datetime import datetime
 import re
 import sys
 import os
+from fractions import Fraction
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from utils import utils, constants
 class DataPreprocessing:
@@ -26,6 +27,7 @@ class DataPreprocessing:
 
         """
         self.data.drop(columns=columns, inplace=True)
+        return self.data
 
     def set_index_from_column(self, column_name, index_name=None):
         """
@@ -50,6 +52,7 @@ class DataPreprocessing:
             self.data.set_index(column_name, inplace=True)
             if index_name:
                 self.data.index.name = index_name
+        return self.data
 
     def delete_empty_columns(self, threshold, delete_by=None, include=None, exclude=None):
         """
@@ -76,6 +79,8 @@ class DataPreprocessing:
                 if percentage > threshold:
                     columns_to_delete.append(col)
         self.data.drop(columns=columns_to_delete, inplace=True)
+
+        return self.data
         
 
     def bring_up_measure_units(self, include=None, exclude=None):
@@ -175,6 +180,7 @@ class DataPreprocessing:
             if self.include_exclude_entry_condition(col, include, exclude):
                 self.data[col] = pd.to_datetime(self.data[col], format='%Y:%m:%d', errors='coerce')
                 self.data[col] = self.data[col].dt.strftime('%d/%m/%Y')
+        return self.data
 
     def split_string_column(self, column_name, new_column_names, keep=False, separator='x'):
         """
@@ -199,9 +205,10 @@ class DataPreprocessing:
         self.data.rename(columns=dict_names, inplace=True)
         if not keep:
             self.data.drop(columns=[column_name], inplace=True)
+        
+        return self.data
 
-    def modify_column(self, column_name, possible_prefixes, possible_suffixes, bracket_content):
-        # Remove possible prefixes
+    def modify_column(self, column_name, possible_prefixes, possible_suffixes, bracket_content = None):
         for prefix in possible_prefixes:
             self.data[column_name] = self.data[column_name].str.replace(prefix, '')
         
@@ -209,17 +216,19 @@ class DataPreprocessing:
         for suffix in possible_suffixes:
             self.data[column_name] = self.data[column_name].str.replace(suffix, '')
 
-        if bracket_content:
-            new_column_name = f"{column_name} ({bracket_content})"
+        if bracket_content != None:
+            new_column_name = f"{column_name}({bracket_content})"
         else:
             new_column_name = column_name
         
         
-        new_column_name = f"{column_name} {bracket_content}"
         self.data.rename(columns={column_name: new_column_name}, inplace=True)
+        return self.data
 
+    
     def remove_prefix(self, column_name, prefix):
         self.data[column_name] = self.data[column_name].str.replace(prefix, '')
+        return self.data
     
     def gps_dms_to_dd(self, include=None, exclude=None):
         self.include_exclude_assertions(include, exclude)
@@ -258,6 +267,7 @@ class DataPreprocessing:
                 dd *= -1
 
             return dd 
+        
         float_reg = r'[-+]?[0-9]*\.?[0-9]+'
         format_reg = rf"{float_reg}\s?deg\s?{float_reg}'\s?{float_reg}\"\s?[NSWE]"
         columns_to_convert = [col for col in self.data.columns if utils.is_matching_regex(str(utils.first_valid_value(self.data[col])), format_reg)]
@@ -265,4 +275,28 @@ class DataPreprocessing:
         for col in columns_to_convert:
             if self.include_exclude_entry_condition(col, include, exclude):
                 self.data[col] = self.data[col].apply(dms_to_dd)
-    
+        
+        return self.data
+        
+                
+                
+    def convert_fraction_columns_to_float(self, include=None, exclude=None):
+        self.include_exclude_assertions(include, exclude)
+        # Function to convert string fractions to floats
+        def string_fraction_to_float(fraction_str):
+            try:
+                fraction = Fraction(fraction_str)
+                return float(fraction)
+            except ValueError:
+                return fraction_str  # Return original value if it cannot be converted
+        
+        # Iterate over each column in the DataFrame
+        for col in self.data.columns:
+            if self.include_exclude_entry_condition(col, include, exclude):
+                if self.data[col].dtype == 'object':  # Check if column type is string
+                    try:
+                        # Try converting all values in the column to float
+                        self.data[col] = self.data[col].apply(string_fraction_to_float)
+                        return self.data
+                    except Exception as e:
+                        print(f"Error converting column '{col}': {e}")

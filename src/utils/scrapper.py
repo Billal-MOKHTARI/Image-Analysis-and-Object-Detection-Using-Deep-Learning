@@ -83,12 +83,12 @@ def pic2map_scrapper(URL, save_path = None, **kwargs):
             
         
 
-def get_exif_data(folder_path, save_path, extract_metadata_path="./src/scripts/extract_metadata.sh"):
+def get_exif_data(folder_path, save_path, metadata_extractor="./src/scripts/extract_metadata.sh"):
     # Execute the shell script to extract metadata
     try:
         subprocess.run(['pwd'], check=True)
-        subprocess.run (["chmod", "+x", extract_metadata_path], check=True)
-        subprocess.run([extract_metadata_path, folder_path, save_path], check=True)
+        subprocess.run (["chmod", "+x", metadata_extractor], check=True)
+        subprocess.run([metadata_extractor, folder_path, save_path], check=True)
         print("Metadata extraction completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error: Metadata extraction failed with exit code {e.returncode}.")

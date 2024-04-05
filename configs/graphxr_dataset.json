@@ -1,16 +1,3 @@
 {
-    "save_paths": {
-        "obj_node_features": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_node_features.csv",
-        "obj_co_occ_list": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_co_occ_list.csv",
-        "img_node_features": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_node_features.csv",
-        "img_co_occ_list": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_co_occ_list.csv",
-        "obj_img_occ_list": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_img_occ_list.csv"
-    },
-    "indexes": {
-        "obj_node_features": false,
-        "obj_co_occ_list": false,
-        "img_node_features": false,
-        "img_co_occ_list": false,
-        "obj_img_occ_list": false
-    }
+
 }

@@ -3,7 +3,7 @@ import os
 # Add the parent directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
-from utils import utils
+from utils import utils, scrapper
 import pandas as pd
 from dataset import data_preprocessing
 
@@ -45,9 +45,26 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
                                         node_name="Node",
                                         neighbor_name="Neighbor",
                                         weight_name="Weight",
-                                        save = True,
-                                        graphxr_dataset_configs_path=None,
-                                        **kwargs):
+                                        graphxr_dataset_configs_path=None):
+    configs = utils.load_json_file(graphxr_dataset_configs_path)
+
+    data_saver = configs["data_saver"]
+    save_data = data_saver["save_data"]
+
+    metadata_extractor = configs["metadata_extractor"]
+    metadata_preprocess_arguments = metadata_extractor["metadata_preprocess_arguments"]
+    extractor_script = metadata_extractor["extractor_script"]
+    metadata_image_folder = metadata_extractor["image_folder"]
+    tmp_metadata_path = metadata_extractor["tmp_path"]
+
+    graphxr_data_configs = configs["graphxr_data_configs"]
+    # Read metadata
+    scrapper.get_exif_data(metadata_image_folder, tmp_metadata_path, extractor_script)
+    metadata = pd.read_csv(tmp_metadata_path, header=0, index_col=0)
+    os.remove(tmp_metadata_path)
+
+    # Preprocess metadata
+    preprocess_image_metadata(metadata, )
 
     # Read label categories and annotation matrix
     label_categories = pd.read_csv(label_categories_path, header=0, index_col=0)
@@ -97,11 +114,10 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     obj_img_occ_list = utils.matrix_to_list(obj_annot_mat, node_name=img_prefix+node_name, neighbor_name=obj_prefix+node_name, weight_name=weight_name)
 
     # Save the dataset
-    if save:
-        configs = utils.load_json_file(graphxr_dataset_configs_path)
+    if save_data:
 
-        save_configs = configs["save_paths"]
-        index_configs = configs["indexes"]
+        save_configs = data_saver["save_paths"]
+        index_configs = data_saver["indexes"]
         obj_node_features.to_csv(save_configs["obj_node_features"], index=index_configs["obj_node_features"])
         obj_co_occ_list.to_csv(save_configs["obj_co_occ_list"], index=index_configs["obj_co_occ_list"])
         img_node_features.to_csv(save_configs["img_node_features"], index=index_configs["img_node_features"])
@@ -117,15 +133,20 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
 # create_co_occurrence_graphxr_dataset(annot_path, label_categories_path, base_url, graphxr_dataset_configs_path=graphxr_dataset_configs_path)
 
 def preprocess_image_metadata(metadata, configs):
-    dpp = data_preprocessing.DataPreprocessing(metadata)
-
+    dpp = data_preprocessing.DataPreprocessing(metadata)  # Assuming DataPreprocessing class is imported as DataPreprocessing
 
     # Load the metadata
     methods = configs.keys()
-    kwargs = configs.values()
-    
 
-    # [eval(method)() for method in methods]
+    for method_name in methods:
+        method_params = configs[method_name]
+
+        # Call the method dynamically
+        method = getattr(dpp, method_name)
+        metadata = method(**method_params)
+    # print(metadata['GPSLatitude'])
+    
+    
 metadata_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv"
 metadata = pd.read_csv(metadata_path, header=0, index_col=0)
 
