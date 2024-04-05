@@ -39,12 +39,7 @@ def add_prefix_suffix(dataframe, prefix=None, suffix=None):
     
     return modified_dataframe
 
-def create_co_occurrence_graphxr_dataset(annot_mat_path, 
-                                        label_categories_path, 
-                                        URL_base,
-                                        node_name="Node",
-                                        neighbor_name="Neighbor",
-                                        weight_name="Weight",
+def create_co_occurrence_graphxr_dataset(
                                         graphxr_dataset_configs_path=None):
     configs = utils.load_json_file(graphxr_dataset_configs_path)
 
@@ -58,13 +53,19 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     tmp_metadata_path = metadata_extractor["tmp_path"]
 
     graphxr_data_configs = configs["graphxr_data_configs"]
+    annot_mat_path = graphxr_data_configs["annotation_matrix_path"]
+    label_categories_path = graphxr_data_configs["label_categories_path"]
+    URL_base = graphxr_data_configs["image_base_URL"]
+    node_name = graphxr_data_configs["node_column_name"]
+    neighbor_name = graphxr_data_configs["neighbor_column_name"]
+    weight_name = graphxr_data_configs["weight_column_name"]
     # Read metadata
     scrapper.get_exif_data(metadata_image_folder, tmp_metadata_path, extractor_script)
     metadata = pd.read_csv(tmp_metadata_path, header=0, index_col=0)
     os.remove(tmp_metadata_path)
 
     # Preprocess metadata
-    preprocess_image_metadata(metadata, )
+    metadata = preprocess_image_metadata(metadata, metadata_preprocess_arguments)
 
     # Read label categories and annotation matrix
     label_categories = pd.read_csv(label_categories_path, header=0, index_col=0)
@@ -144,7 +145,7 @@ def preprocess_image_metadata(metadata, configs):
         # Call the method dynamically
         method = getattr(dpp, method_name)
         metadata = method(**method_params)
-    # print(metadata['GPSLatitude'])
+    return metadata
     
     
 metadata_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv"

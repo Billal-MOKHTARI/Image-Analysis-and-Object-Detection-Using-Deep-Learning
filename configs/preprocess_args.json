@@ -1,7 +1,12 @@
 {
   "graphxr_data_configs": {
-
-  }, 
+    "annotation_matrix_path": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv",
+    "label_categories_path": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv",
+    "image_base_URL": "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/",
+    "node_column_name": "Node",
+    "neighbor_column_name": "Neighbor",
+    "weight_column_name": "Weight"
+  },
   "metadata_extractor": {
     "image_folder": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/test/images",
     "extractor_script": "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/src/scripts/extract_metadata.sh",
