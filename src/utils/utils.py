@@ -13,6 +13,17 @@ from dataset import data_preprocessing
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+def use_absolute_path(path, use_abs_path):
+    if use_abs_path:
+        return os.path.abspath(path)
+    return path
+
+def create_folder(folder_path):
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Folder '{folder_path}' created successfully.")
+    else:
+        print(f"Folder '{folder_path}' already exists.")
 
 def remove_zero_columns(data):
     """
@@ -35,51 +46,6 @@ def remove_zero_columns(data):
     else:
         raise ValueError("Input must be a NumPy array or a Pandas DataFrame")
 
-def calculate_co_occurrence_matrix(mat):
-    """
-    Fill frequency occurrence matrix based on the input matrix.
-
-    Parameters:
-        mat (DataFrame): Input matrix.
-
-    Returns:
-        DataFrame: Frequency occurrence matrix.
-    """
-    l_rows, l_columns= mat.shape
-    co_occ_mat = np.zeros((l_columns, l_columns))
-    for _, row in mat.iterrows():
-        indice= np.argwhere(list(row))
-        indice = indice.reshape((indice.shape[0],))
-        for i in range(len(indice)):
-            for j in range(len(indice)):
-                co_occ_mat[indice[i], indice[j]]+=1
-    # Convert all values to integers
-    co_occ_mat = np.array([[int(s) for s in row] for row in co_occ_mat])
-    co_occ_mat = pd.DataFrame(co_occ_mat, index=mat.columns, columns=mat.columns)
-
-    return pd.DataFrame(co_occ_mat, index=mat.columns, columns=mat.columns)
-
-def matrix_to_list(adj_matrix_df, node_name = 'Node', neighbor_name = 'Neighbor', weight_name = 'Weight'):
-    """
-    Converts an adjacency matrix DataFrame to an adjacency list DataFrame.
-
-    Parameters:
-    - adj_matrix_df: a pandas DataFrame representing the adjacency matrix
-
-    Returns:
-    - adj_list_df: a pandas DataFrame representing the adjacency list
-    """
-    adj_list = {node_name: [], neighbor_name: [], weight_name: []}
-    for i in range(len(adj_matrix_df)):
-        node = adj_matrix_df.index[i]
-        neighbors = list(adj_matrix_df.columns[adj_matrix_df.iloc[i] != 0])
-        for neighbor in neighbors:
-            weight = adj_matrix_df.loc[node, neighbor]
-            adj_list[node_name].append(node)
-            adj_list[neighbor_name].append(neighbor)
-            adj_list[weight_name].append(weight)
-    adj_list_df = pd.DataFrame(adj_list)
-    return adj_list_df
 
 def closeness_centrality(matrix):
     pass
