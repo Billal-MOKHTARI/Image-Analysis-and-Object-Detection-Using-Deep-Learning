@@ -38,21 +38,31 @@ def add_prefix_suffix(dataframe, prefix=None, suffix=None):
     
     return modified_dataframe
 
+def use_absolute_path(path, use_abs_path):
+    if use_abs_path:
+        return os.path.abspath(path)
+    return path
+
 def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
     configs = utils.load_json_file(graphxr_dataset_configs_path)
+    use_abs_path = configs["use_absolute_path"]
+
 
     data_saver = configs["data_saver"]
     save_data = data_saver["save_data"]
 
     metadata_extractor = configs["metadata_extractor"]
     metadata_preprocess_arguments = metadata_extractor["metadata_preprocess_arguments"]
-    extractor_script = metadata_extractor["extractor_script"]
-    metadata_image_folder = metadata_extractor["image_folder"]
-    tmp_metadata_path = metadata_extractor["tmp_path"]
+    extractor_script = use_absolute_path(metadata_extractor["extractor_script"], use_abs_path)
+    metadata_image_folder = use_absolute_path(metadata_extractor["image_folder"], use_abs_path)
+    tmp_metadata_path = use_absolute_path(metadata_extractor["tmp_path"], use_abs_path)
 
     graphxr_data_configs = configs["graphxr_data_configs"]
-    annot_mat_path = graphxr_data_configs["annotation_matrix_path"]
-    label_categories_path = graphxr_data_configs["label_categories_path"]
+    obj_prefix = graphxr_data_configs["object_prefix"]
+    img_prefix = graphxr_data_configs["image_prefix"]
+
+    annot_mat_path = use_absolute_path(graphxr_data_configs["annotation_matrix_path"], use_abs_path)
+    label_categories_path = use_absolute_path(graphxr_data_configs["label_categories_path"], use_abs_path)
     URL_base = graphxr_data_configs["image_base_URL"]
     node_name = graphxr_data_configs["node_column_name"]
     neighbor_name = graphxr_data_configs["neighbor_column_name"]
@@ -66,8 +76,8 @@ def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
     metadata = utils.preprocess_image_metadata(metadata, metadata_preprocess_arguments)
 
     # Read label categories and annotation matrix
-    label_categories = pd.read_csv(label_categories_path, header=0, index_col=0)
-    obj_annot_mat = pd.read_csv(annot_mat_path, header=0, index_col=0)
+    label_categories = pd.read_csv(os.path.abspath(label_categories_path), header=0, index_col=0)
+    obj_annot_mat = pd.read_csv(os.path.abspath(annot_mat_path), header=0, index_col=0)
 
     
     # Extract stuff and thing categories so that we can identify the type of relationship between the objects
@@ -102,11 +112,9 @@ def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
     img_node_features = utils.extract_diagonal(img_co_occ_matrix, [node_name, "NodeWeight"])
     img_node_features["URL"] = URL_base + img_node_features[node_name]
 
-    obj_prefix = 'object_'
     obj_node_features = add_prefix_suffix(obj_node_features, prefix=obj_prefix)
     obj_co_occ_list = add_prefix_suffix(obj_co_occ_list, prefix=obj_prefix)
 
-    img_prefix = 'image_'
     img_node_features = add_prefix_suffix(img_node_features, prefix=img_prefix)
     img_node_features = pd.merge(img_node_features, metadata, left_on = 'image_Node', right_on='FileName', how='left')
 
@@ -116,14 +124,16 @@ def create_co_occurrence_graphxr_dataset(graphxr_dataset_configs_path):
 
     # Save the dataset
     if save_data:
-
         save_configs = data_saver["save_paths"]
-        index_configs = data_saver["indexes"]
-        obj_node_features.to_csv(save_configs["obj_node_features"], index=index_configs["obj_node_features"])
-        obj_co_occ_list.to_csv(save_configs["obj_co_occ_list"], index=index_configs["obj_co_occ_list"])
-        img_node_features.to_csv(save_configs["img_node_features"], index=index_configs["img_node_features"])
-        img_co_occ_list.to_csv(save_configs["img_co_occ_list"], index=index_configs["img_co_occ_list"])
-        obj_img_occ_list.to_csv(save_configs["obj_img_occ_list"], index=index_configs["obj_img_occ_list"])
+
+        for key, value in save_configs.items():
+            save_configs[key]["path"] = use_absolute_path(value["path"], use_abs_path)
+
+        obj_node_features.to_csv(save_configs["obj_node_features"]["path"], index=save_configs["obj_node_features"]["index"])
+        obj_co_occ_list.to_csv(save_configs["obj_co_occ_list"]["path"], index=save_configs["obj_co_occ_list"]["index"])
+        img_node_features.to_csv(save_configs["img_node_features"]["path"], index=save_configs["img_node_features"]["index"])
+        img_co_occ_list.to_csv(save_configs["img_co_occ_list"]["path"], index=save_configs["img_co_occ_list"]["index"])
+        obj_img_occ_list.to_csv(save_configs["obj_img_occ_list"]["path"], index=save_configs["obj_img_occ_list"]["index"])
 
 
     return obj_co_occ_list, img_co_occ_list

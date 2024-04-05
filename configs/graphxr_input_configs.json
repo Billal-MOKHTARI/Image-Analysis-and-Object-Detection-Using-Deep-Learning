@@ -1,22 +1,23 @@
 {
+  "use_absolute_path": true,
   "graphxr_data_configs": {
-    "annotation_matrix_path": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv",
-    "label_categories_path": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv",
+    "annotation_matrix_path": "data/output/2. processed_annotations.csv",
+    "label_categories_path": "data/output/label_categories.csv",
     "image_base_URL": "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/",
     "node_column_name": "Node",
     "neighbor_column_name": "Neighbor",
-    "weight_column_name": "Weight"
+    "weight_column_name": "Weight",
+    "object_prefix": "object_",
+    "image_prefix": "image_"
   },
   "metadata_extractor": {
-    "image_folder": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/test",
-    "extractor_script": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/src/scripts/extract_metadata.sh",
+    "image_folder": "data/test",
+    "extractor_script": "src/scripts/extract_metadata.sh",
     "tmp_path": "tmp.csv",
     "metadata_preprocess_arguments": {
       "delete_empty_columns": {
         "threshold": 0.90395480226,
-        "delete_by": [
-          "Unknown (0)"
-        ],
+        "delete_by": ["Unknown (0)"],
         "include": null,
         "exclude": null
       },
@@ -34,9 +35,7 @@
       },
       "bring_up_measure_units": {
         "include": null,
-        "exclude": [
-          "GPSLatitude"
-        ]
+        "exclude": ["GPSLatitude"]
       },
       "convert_datetime": {
         "regex_from": "\\d{4}:\\d{2}:\\d{2} (\\d{2}:\\d{2}:\\d{2})?(\\+\\d{2}:\\d{2})?",
@@ -49,10 +48,7 @@
       },
       "split_string_column": {
         "column_name": "ImageSize",
-        "new_column_names": [
-          "ImageWidth",
-          "ImageHeight"
-        ],
+        "new_column_names": ["ImageWidth", "ImageHeight"],
         "keep": false,
         "separator": "x"
       },
@@ -62,12 +58,8 @@
       },
       "modify_column": {
         "column_name": "YCbCrSubSampling",
-        "possible_prefixes": [
-          "YCbCr"
-        ],
-        "possible_suffixes": [
-          "\\(\\d+ \\d+\\)"
-        ],
+        "possible_prefixes": ["YCbCr"],
+        "possible_suffixes": ["\\(\\d+ \\d+\\)"],
         "bracket_content": null
       },
       "remove_prefix": {
@@ -78,18 +70,26 @@
   },
   "data_saver": {
     "save_paths": {
-      "obj_node_features": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_node_features.csv",
-      "obj_co_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_co_occ_list.csv",
-      "img_node_features": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_node_features.csv",
-      "img_co_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_co_occ_list.csv",
-      "obj_img_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_img_occ_list.csv"
-    },
-    "indexes": {
-      "obj_node_features": false,
-      "obj_co_occ_list": false,
-      "img_node_features": false,
-      "img_co_occ_list": false,
-      "obj_img_occ_list": false
+      "obj_node_features": {
+        "path": "data/output/graphxr_datasets/obj_node_features.csv",
+        "index": false
+      },
+      "obj_co_occ_list": {
+        "path": "data/output/graphxr_datasets/obj_co_occ_list.csv",
+        "index": false
+      },
+      "img_node_features": {
+        "path": "data/output/graphxr_datasets/img_node_features.csv",
+        "index": false
+      },
+      "img_co_occ_list": {
+        "path": "data/output/graphxr_datasets/img_co_occ_list.csv",
+        "index": false
+      },
+      "obj_img_occ_list": {
+        "path": "data/output/graphxr_datasets/obj_img_occ_list.csv",
+        "index": false
+      }
     },
     "save_data": true
   }
