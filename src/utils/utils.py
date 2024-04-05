@@ -31,27 +31,29 @@ def remove_zero_columns(data):
     else:
         raise ValueError("Input must be a NumPy array or a Pandas DataFrame")
 
-def calculate_co_occurrence_matrix(data):
+def calculate_co_occurrence_matrix(mat):
     """
-    Calculate the co-occurrence matrix for a dataset.
+    Fill frequency occurrence matrix based on the input matrix.
 
     Parameters:
-    - data: DataFrame, the input dataset
+        mat (DataFrame): Input matrix.
 
     Returns:
-    - co_occurrence_matrix: DataFrame, the co-occurrence matrix
+        DataFrame: Frequency occurrence matrix.
     """
-    co_occurrence_matrix = pd.DataFrame(index=data.columns, columns=data.columns, dtype=int).fillna(0)
-    for _, row in data.iterrows():
-        for col_i in data.columns:
-            for col_j in data.columns:
-                if col_i != col_j and row[col_i] != 0 and row[col_j] != 0:
-                    co_occurrence_matrix.loc[col_i, col_j] += 1
-        for col in data.columns:
-            if row[col] != 0:
-                co_occurrence_matrix.loc[col, col] += 1
-    co_occurrence_matrix = co_occurrence_matrix.astype(int)
-    return co_occurrence_matrix
+    l_rows, l_columns= mat.shape
+    co_occ_mat = np.zeros((l_columns, l_columns))
+    for _, row in mat.iterrows():
+        indice= np.argwhere(list(row))
+        indice = indice.reshape((indice.shape[0],))
+        for i in range(len(indice)):
+            for j in range(len(indice)):
+                co_occ_mat[indice[i], indice[j]]+=1
+    # Convert all values to integers
+    co_occ_mat = np.array([[int(s) for s in row] for row in co_occ_mat])
+    co_occ_mat = pd.DataFrame(co_occ_mat, index=mat.columns, columns=mat.columns)
+
+    return pd.DataFrame(co_occ_mat, index=mat.columns, columns=mat.columns)
 
 def matrix_to_list(adj_matrix_df, node_name = 'Node', neighbor_name = 'Neighbor', weight_name = 'Weight'):
     """

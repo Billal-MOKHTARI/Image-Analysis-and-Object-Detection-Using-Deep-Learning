@@ -1,13 +1,11 @@
 import sys
 import os
-import json
 # Add the parent directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from utils import utils
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder
+from dataset import data_preprocessing
 
 def add_prefix_suffix(dataframe, prefix=None, suffix=None):
     """
@@ -101,20 +99,37 @@ def create_co_occurrence_graphxr_dataset(annot_mat_path,
     # Save the dataset
     if save:
         configs = utils.load_json_file(graphxr_dataset_configs_path)
+
         save_configs = configs["save_paths"]
         index_configs = configs["indexes"]
-        obj_node_features.to_csv(save_configs["object_node_features"], index=index_configs["obj_node_features"])
-        obj_co_occ_list.to_csv(save_configs["object_co_occ_list"], index=index_configs["obj_co_occ_list"])
-        img_node_features.to_csv(save_configs["image_node_features"], index=index_configs["img_node_features"])
-        img_co_occ_list.to_csv(save_configs["image_co_occ_list"], index=index_configs["img_co_occ_list"])
-        obj_img_occ_list.to_csv(save_configs["object_image_co_occ_list"], index=index_configs["obj_img_co_occ_list"])
+        obj_node_features.to_csv(save_configs["obj_node_features"], index=index_configs["obj_node_features"])
+        obj_co_occ_list.to_csv(save_configs["obj_co_occ_list"], index=index_configs["obj_co_occ_list"])
+        img_node_features.to_csv(save_configs["img_node_features"], index=index_configs["img_node_features"])
+        img_co_occ_list.to_csv(save_configs["img_co_occ_list"], index=index_configs["img_co_occ_list"])
+        obj_img_occ_list.to_csv(save_configs["obj_img_occ_list"], index=index_configs["obj_img_occ_list"])
 
     return obj_co_occ_list, img_co_occ_list
 
-annot_path = "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv"
-label_categories_path = "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv"
-base_url = "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/"
-create_co_occurrence_graphxr_dataset(annot_path, label_categories_path, base_url)
+# annot_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv"
+# label_categories_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv"
+# base_url = "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/"
+# graphxr_dataset_configs_path = '/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/configs/graphxr_dataset.json'
+# create_co_occurrence_graphxr_dataset(annot_path, label_categories_path, base_url, graphxr_dataset_configs_path=graphxr_dataset_configs_path)
 
-# def preprocess_image_metadata(metatada_path, json_file_path, save_path=None):
-#     pass
+def preprocess_image_metadata(metadata, configs):
+    dpp = data_preprocessing.DataPreprocessing(metadata)
+
+
+    # Load the metadata
+    methods = configs.keys()
+    kwargs = configs.values()
+    
+
+    # [eval(method)() for method in methods]
+metadata_path = "/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv"
+metadata = pd.read_csv(metadata_path, header=0, index_col=0)
+
+json_file_path = '/home/billalmokhtari/Documents/projects/Image-Analysis-and-Object-Detection-Using-Deep-Learning/configs/preprocess_args.json'
+configs = utils.load_json_file(json_file_path)
+
+preprocess_image_metadata(metadata, configs)

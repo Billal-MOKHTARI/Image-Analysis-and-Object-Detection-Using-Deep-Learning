@@ -1,6 +1,4 @@
 {
-  "data_path": "../data/output/metadata/image_metadata.csv",
-  "pipeline arguments": {
     "delete_empty_columns": {
       "threshold": 0.90395480226,
       "delete_by": ["Unknown (0)"],
@@ -47,5 +45,4 @@
       "column_name": "MIMEType",
       "prefix": "image/"
     }
-  }
 }

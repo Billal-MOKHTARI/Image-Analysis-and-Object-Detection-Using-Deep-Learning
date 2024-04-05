@@ -265,9 +265,4 @@ class DataPreprocessing:
         for col in columns_to_convert:
             if self.include_exclude_entry_condition(col, include, exclude):
                 self.data[col] = self.data[col].apply(dms_to_dd)
-        
-
-
-data = pd.read_csv("/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/metadata/image_metadata.csv")
-dpp = DataPreprocessing(data)
-dpp.delete_empty_columns(1-17/177)
+    

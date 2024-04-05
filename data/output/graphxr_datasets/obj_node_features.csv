@@ -1,0 +1,134 @@
+object_Node,object_Type,object_NodeWeight
+banner,stuff,24
+bridge,stuff,0
+cardboard,stuff,3
+counter,stuff,0
+curtain,stuff,4
+door-stuff,stuff,14
+floor-wood,stuff,1
+flower,stuff,0
+fruit,stuff,0
+gravel,stuff,0
+house,stuff,0
+light,stuff,0
+mirror-stuff,stuff,0
+net,stuff,0
+pillow,stuff,0
+platform,stuff,0
+playingfield,stuff,0
+railroad,stuff,0
+river,stuff,0
+road,stuff,10
+roof,stuff,0
+sand,stuff,83
+sea,stuff,0
+shelf,stuff,0
+snow,stuff,0
+stairs,stuff,0
+tent,stuff,4
+towel,stuff,2
+wall-brick,stuff,3
+wall-stone,stuff,12
+wall-tile,stuff,2
+wall-wood,stuff,1
+water,stuff,3
+window-blind,stuff,1
+window,stuff,7
+tree,stuff,29
+fence,stuff,0
+ceiling,stuff,12
+sky,stuff,101
+cabinet,stuff,1
+table,stuff,15
+floor,stuff,29
+pavement,stuff,25
+mountain,stuff,1
+grass,stuff,6
+dirt,stuff,47
+paper,stuff,8
+food,stuff,6
+building,stuff,27
+rock,stuff,9
+wall,stuff,84
+rug,stuff,4
+things,stuff,1
+person,thing,163
+bicycle,thing,3
+car,thing,22
+motorcycle,thing,25
+airplane,thing,0
+bus,thing,14
+train,thing,0
+truck,thing,19
+boat,thing,0
+traffic light,thing,0
+fire hydrant,thing,0
+stop sign,thing,0
+parking meter,thing,0
+bench,thing,5
+bird,thing,0
+cat,thing,0
+dog,thing,0
+horse,thing,0
+sheep,thing,0
+cow,thing,0
+elephant,thing,0
+bear,thing,0
+zebra,thing,0
+giraffe,thing,0
+backpack,thing,11
+umbrella,thing,0
+handbag,thing,12
+tie,thing,0
+suitcase,thing,3
+frisbee,thing,0
+skis,thing,0
+snowboard,thing,0
+sports ball,thing,5
+kite,thing,0
+baseball bat,thing,0
+baseball glove,thing,0
+skateboard,thing,0
+surfboard,thing,0
+tennis racket,thing,0
+bottle,thing,20
+wine glass,thing,0
+cup,thing,11
+fork,thing,0
+knife,thing,0
+spoon,thing,2
+bowl,thing,6
+banana,thing,1
+apple,thing,0
+sandwich,thing,0
+orange,thing,0
+broccoli,thing,0
+carrot,thing,0
+hot dog,thing,0
+pizza,thing,1
+donut,thing,0
+cake,thing,0
+chair,thing,29
+couch,thing,1
+potted plant,thing,4
+bed,thing,0
+dining table,thing,11
+toilet,thing,0
+tv,thing,0
+laptop,thing,6
+mouse,thing,0
+remote,thing,0
+keyboard,thing,0
+cell phone,thing,2
+microwave,thing,0
+oven,thing,0
+toaster,thing,0
+sink,thing,0
+refrigerator,thing,0
+book,thing,5
+clock,thing,0
+vase,thing,0
+scissors,thing,0
+teddy bear,thing,0
+hair drier,thing,0
+toothbrush,thing,0

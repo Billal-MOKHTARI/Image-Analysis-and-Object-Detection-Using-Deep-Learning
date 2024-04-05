@@ -1,0 +1,1208 @@
+object_Node,object_Neighbor,object_Weight,object_LinkType
+banner,banner,24,SS
+banner,cardboard,1,SS
+banner,door-stuff,2,SS
+banner,floor-wood,1,SS
+banner,sand,5,SS
+banner,tent,2,SS
+banner,wall-brick,3,SS
+banner,wall-wood,1,SS
+banner,tree,1,SS
+banner,ceiling,5,SS
+banner,sky,6,SS
+banner,cabinet,1,SS
+banner,table,4,SS
+banner,floor,5,SS
+banner,dirt,7,SS
+banner,paper,3,SS
+banner,building,4,SS
+banner,wall,15,SS
+banner,rug,1,SS
+banner,person,21,ST
+banner,motorcycle,1,ST
+banner,backpack,1,ST
+banner,handbag,1,ST
+banner,bottle,7,ST
+banner,cup,2,ST
+banner,bowl,1,ST
+banner,pizza,1,ST
+banner,chair,7,ST
+banner,dining table,4,ST
+banner,book,1,ST
+cardboard,banner,1,SS
+cardboard,cardboard,3,SS
+cardboard,road,1,SS
+cardboard,wall-wood,1,SS
+cardboard,tree,1,SS
+cardboard,sky,1,SS
+cardboard,floor,1,SS
+cardboard,pavement,1,SS
+cardboard,dirt,2,SS
+cardboard,paper,2,SS
+cardboard,food,1,SS
+cardboard,building,1,SS
+cardboard,wall,3,SS
+cardboard,person,3,ST
+cardboard,car,1,ST
+cardboard,motorcycle,1,ST
+cardboard,bench,1,ST
+cardboard,backpack,1,ST
+cardboard,chair,1,ST
+cardboard,potted plant,1,ST
+curtain,curtain,4,SS
+curtain,ceiling,2,SS
+curtain,table,3,SS
+curtain,floor,1,SS
+curtain,wall,4,SS
+curtain,rug,2,SS
+curtain,person,4,ST
+curtain,chair,4,ST
+curtain,dining table,2,ST
+curtain,laptop,3,ST
+curtain,book,1,ST
+door-stuff,banner,2,SS
+door-stuff,door-stuff,14,SS
+door-stuff,sand,3,SS
+door-stuff,wall-stone,2,SS
+door-stuff,window,2,SS
+door-stuff,tree,2,SS
+door-stuff,ceiling,2,SS
+door-stuff,sky,4,SS
+door-stuff,table,3,SS
+door-stuff,floor,6,SS
+door-stuff,pavement,6,SS
+door-stuff,dirt,2,SS
+door-stuff,building,2,SS
+door-stuff,wall,14,SS
+door-stuff,person,14,ST
+door-stuff,bicycle,1,ST
+door-stuff,motorcycle,2,ST
+door-stuff,truck,1,ST
+door-stuff,handbag,1,ST
+door-stuff,sports ball,1,ST
+door-stuff,bottle,4,ST
+door-stuff,cup,3,ST
+door-stuff,chair,6,ST
+door-stuff,couch,1,ST
+door-stuff,dining table,3,ST
+door-stuff,laptop,1,ST
+door-stuff,cell phone,1,ST
+floor-wood,banner,1,SS
+floor-wood,floor-wood,1,SS
+floor-wood,tent,1,SS
+floor-wood,wall,1,SS
+floor-wood,rug,1,SS
+floor-wood,person,1,ST
+floor-wood,bottle,1,ST
+floor-wood,cup,1,ST
+floor-wood,bowl,1,ST
+floor-wood,pizza,1,ST
+road,cardboard,1,SS
+road,road,10,SS
+road,sky,9,SS
+road,pavement,6,SS
+road,dirt,3,SS
+road,paper,1,SS
+road,building,5,SS
+road,wall,1,SS
+road,person,10,ST
+road,bicycle,1,ST
+road,car,4,ST
+road,motorcycle,5,ST
+road,bus,6,ST
+road,truck,3,ST
+road,bench,1,ST
+road,backpack,3,ST
+road,handbag,1,ST
+road,suitcase,1,ST
+sand,banner,5,SS
+sand,door-stuff,3,SS
+sand,sand,83,SS
+sand,tent,3,SS
+sand,wall-brick,2,SS
+sand,wall-stone,7,SS
+sand,water,1,SS
+sand,tree,13,SS
+sand,ceiling,2,SS
+sand,sky,65,SS
+sand,table,1,SS
+sand,floor,2,SS
+sand,pavement,6,SS
+sand,grass,1,SS
+sand,dirt,22,SS
+sand,food,1,SS
+sand,building,15,SS
+sand,rock,7,SS
+sand,wall,26,SS
+sand,things,1,SS
+sand,person,79,ST
+sand,bicycle,1,ST
+sand,car,13,ST
+sand,motorcycle,14,ST
+sand,bus,3,ST
+sand,truck,12,ST
+sand,bench,1,ST
+sand,backpack,5,ST
+sand,handbag,8,ST
+sand,suitcase,1,ST
+sand,sports ball,2,ST
+sand,bottle,2,ST
+sand,cup,1,ST
+sand,spoon,1,ST
+sand,bowl,3,ST
+sand,chair,5,ST
+sand,potted plant,2,ST
+sand,dining table,1,ST
+sand,book,1,ST
+tent,banner,2,SS
+tent,floor-wood,1,SS
+tent,sand,3,SS
+tent,tent,4,SS
+tent,wall-brick,1,SS
+tent,ceiling,1,SS
+tent,sky,2,SS
+tent,dirt,1,SS
+tent,wall,2,SS
+tent,rug,1,SS
+tent,person,4,ST
+tent,motorcycle,1,ST
+tent,handbag,1,ST
+tent,bottle,1,ST
+tent,cup,1,ST
+tent,bowl,2,ST
+tent,pizza,1,ST
+tent,chair,1,ST
+towel,towel,2,SS
+towel,wall-stone,1,SS
+towel,sky,2,SS
+towel,paper,1,SS
+towel,building,1,SS
+towel,person,2,ST
+wall-brick,banner,3,SS
+wall-brick,sand,2,SS
+wall-brick,tent,1,SS
+wall-brick,wall-brick,3,SS
+wall-brick,tree,1,SS
+wall-brick,ceiling,1,SS
+wall-brick,sky,2,SS
+wall-brick,dirt,3,SS
+wall-brick,building,2,SS
+wall-brick,wall,1,SS
+wall-brick,person,3,ST
+wall-brick,chair,1,ST
+wall-stone,door-stuff,2,SS
+wall-stone,sand,7,SS
+wall-stone,towel,1,SS
+wall-stone,wall-stone,12,SS
+wall-stone,tree,5,SS
+wall-stone,sky,7,SS
+wall-stone,floor,1,SS
+wall-stone,pavement,2,SS
+wall-stone,dirt,4,SS
+wall-stone,paper,1,SS
+wall-stone,food,4,SS
+wall-stone,building,2,SS
+wall-stone,rock,3,SS
+wall-stone,wall,9,SS
+wall-stone,person,12,ST
+wall-stone,bicycle,1,ST
+wall-stone,truck,2,ST
+wall-stone,handbag,1,ST
+wall-stone,sports ball,1,ST
+wall-stone,cup,1,ST
+wall-stone,chair,1,ST
+wall-stone,potted plant,1,ST
+wall-tile,wall-tile,2,SS
+wall-tile,window,1,SS
+wall-tile,table,1,SS
+wall-tile,floor,2,SS
+wall-tile,paper,1,SS
+wall-tile,wall,2,SS
+wall-tile,person,2,ST
+wall-tile,bench,1,ST
+wall-tile,book,1,ST
+wall-wood,banner,1,SS
+wall-wood,cardboard,1,SS
+wall-wood,wall-wood,1,SS
+wall-wood,dirt,1,SS
+wall-wood,paper,1,SS
+wall-wood,wall,1,SS
+wall-wood,person,1,ST
+water,sand,1,SS
+water,water,3,SS
+water,tree,1,SS
+water,sky,3,SS
+water,table,1,SS
+water,floor,1,SS
+water,pavement,1,SS
+water,grass,1,SS
+water,dirt,1,SS
+water,wall,1,SS
+water,person,2,ST
+water,bottle,1,ST
+water,bowl,1,ST
+window-blind,window-blind,1,SS
+window-blind,window,1,SS
+window-blind,wall,1,SS
+window-blind,person,1,ST
+window-blind,bottle,1,ST
+window-blind,laptop,1,ST
+window,door-stuff,2,SS
+window,wall-tile,1,SS
+window,window-blind,1,SS
+window,window,7,SS
+window,table,2,SS
+window,floor,6,SS
+window,pavement,2,SS
+window,food,1,SS
+window,wall,7,SS
+window,person,7,ST
+window,bench,1,ST
+window,handbag,1,ST
+window,bottle,3,ST
+window,cup,2,ST
+window,spoon,1,ST
+window,bowl,2,ST
+window,chair,2,ST
+window,dining table,1,ST
+window,laptop,2,ST
+window,book,1,ST
+tree,banner,1,SS
+tree,cardboard,1,SS
+tree,door-stuff,2,SS
+tree,sand,13,SS
+tree,wall-brick,1,SS
+tree,wall-stone,5,SS
+tree,water,1,SS
+tree,tree,29,SS
+tree,ceiling,1,SS
+tree,sky,19,SS
+tree,table,1,SS
+tree,floor,2,SS
+tree,pavement,3,SS
+tree,grass,5,SS
+tree,dirt,16,SS
+tree,paper,1,SS
+tree,food,5,SS
+tree,building,4,SS
+tree,rock,2,SS
+tree,wall,11,SS
+tree,person,27,ST
+tree,car,6,ST
+tree,motorcycle,1,ST
+tree,bus,2,ST
+tree,truck,3,ST
+tree,backpack,1,ST
+tree,handbag,1,ST
+tree,suitcase,1,ST
+tree,cup,2,ST
+tree,chair,4,ST
+tree,potted plant,3,ST
+ceiling,banner,5,SS
+ceiling,curtain,2,SS
+ceiling,door-stuff,2,SS
+ceiling,sand,2,SS
+ceiling,tent,1,SS
+ceiling,wall-brick,1,SS
+ceiling,tree,1,SS
+ceiling,ceiling,12,SS
+ceiling,table,5,SS
+ceiling,floor,4,SS
+ceiling,dirt,2,SS
+ceiling,paper,2,SS
+ceiling,wall,12,SS
+ceiling,rug,1,SS
+ceiling,person,12,ST
+ceiling,car,1,ST
+ceiling,truck,1,ST
+ceiling,sports ball,1,ST
+ceiling,bottle,3,ST
+ceiling,cup,1,ST
+ceiling,chair,8,ST
+ceiling,dining table,2,ST
+ceiling,laptop,2,ST
+ceiling,book,1,ST
+sky,banner,6,SS
+sky,cardboard,1,SS
+sky,door-stuff,4,SS
+sky,road,9,SS
+sky,sand,65,SS
+sky,tent,2,SS
+sky,towel,2,SS
+sky,wall-brick,2,SS
+sky,wall-stone,7,SS
+sky,water,3,SS
+sky,tree,19,SS
+sky,sky,101,SS
+sky,table,1,SS
+sky,floor,3,SS
+sky,pavement,16,SS
+sky,mountain,1,SS
+sky,grass,6,SS
+sky,dirt,29,SS
+sky,paper,2,SS
+sky,building,26,SS
+sky,rock,7,SS
+sky,wall,22,SS
+sky,person,98,ST
+sky,bicycle,2,ST
+sky,car,20,ST
+sky,motorcycle,20,ST
+sky,bus,11,ST
+sky,truck,16,ST
+sky,bench,3,ST
+sky,backpack,9,ST
+sky,handbag,9,ST
+sky,suitcase,3,ST
+sky,sports ball,2,ST
+sky,bottle,3,ST
+sky,cup,1,ST
+sky,bowl,2,ST
+sky,chair,4,ST
+sky,potted plant,3,ST
+sky,dining table,2,ST
+sky,book,1,ST
+cabinet,banner,1,SS
+cabinet,cabinet,1,SS
+cabinet,wall,1,SS
+cabinet,person,1,ST
+cabinet,bottle,1,ST
+table,banner,4,SS
+table,curtain,3,SS
+table,door-stuff,3,SS
+table,sand,1,SS
+table,wall-tile,1,SS
+table,water,1,SS
+table,window,2,SS
+table,tree,1,SS
+table,ceiling,5,SS
+table,sky,1,SS
+table,table,15,SS
+table,floor,8,SS
+table,grass,1,SS
+table,dirt,2,SS
+table,paper,2,SS
+table,wall,13,SS
+table,rug,2,SS
+table,person,13,ST
+table,car,1,ST
+table,truck,1,ST
+table,handbag,1,ST
+table,bottle,7,ST
+table,cup,4,ST
+table,bowl,1,ST
+table,chair,9,ST
+table,dining table,5,ST
+table,laptop,5,ST
+table,cell phone,1,ST
+table,book,3,ST
+floor,banner,5,SS
+floor,cardboard,1,SS
+floor,curtain,1,SS
+floor,door-stuff,6,SS
+floor,sand,2,SS
+floor,wall-stone,1,SS
+floor,wall-tile,2,SS
+floor,water,1,SS
+floor,window,6,SS
+floor,tree,2,SS
+floor,ceiling,4,SS
+floor,sky,3,SS
+floor,table,8,SS
+floor,floor,29,SS
+floor,pavement,6,SS
+floor,dirt,2,SS
+floor,paper,2,SS
+floor,food,3,SS
+floor,rock,1,SS
+floor,wall,28,SS
+floor,rug,1,SS
+floor,person,28,ST
+floor,bench,2,ST
+floor,handbag,2,ST
+floor,sports ball,2,ST
+floor,bottle,12,ST
+floor,cup,5,ST
+floor,spoon,2,ST
+floor,bowl,4,ST
+floor,banana,1,ST
+floor,chair,14,ST
+floor,potted plant,1,ST
+floor,dining table,7,ST
+floor,laptop,2,ST
+floor,cell phone,2,ST
+floor,book,2,ST
+pavement,cardboard,1,SS
+pavement,door-stuff,6,SS
+pavement,road,6,SS
+pavement,sand,6,SS
+pavement,wall-stone,2,SS
+pavement,water,1,SS
+pavement,window,2,SS
+pavement,tree,3,SS
+pavement,sky,16,SS
+pavement,floor,6,SS
+pavement,pavement,25,SS
+pavement,dirt,8,SS
+pavement,paper,1,SS
+pavement,food,1,SS
+pavement,building,8,SS
+pavement,rock,1,SS
+pavement,wall,15,SS
+pavement,person,24,ST
+pavement,bicycle,2,ST
+pavement,car,7,ST
+pavement,motorcycle,9,ST
+pavement,bus,8,ST
+pavement,truck,5,ST
+pavement,bench,1,ST
+pavement,backpack,4,ST
+pavement,handbag,1,ST
+pavement,suitcase,2,ST
+pavement,sports ball,2,ST
+pavement,bottle,4,ST
+pavement,cup,3,ST
+pavement,spoon,1,ST
+pavement,bowl,2,ST
+pavement,chair,3,ST
+pavement,couch,1,ST
+pavement,potted plant,1,ST
+pavement,dining table,1,ST
+mountain,sky,1,SS
+mountain,mountain,1,SS
+mountain,grass,1,SS
+mountain,dirt,1,SS
+mountain,person,1,ST
+grass,sand,1,SS
+grass,water,1,SS
+grass,tree,5,SS
+grass,sky,6,SS
+grass,table,1,SS
+grass,mountain,1,SS
+grass,grass,6,SS
+grass,dirt,5,SS
+grass,person,5,ST
+dirt,banner,7,SS
+dirt,cardboard,2,SS
+dirt,door-stuff,2,SS
+dirt,road,3,SS
+dirt,sand,22,SS
+dirt,tent,1,SS
+dirt,wall-brick,3,SS
+dirt,wall-stone,4,SS
+dirt,wall-wood,1,SS
+dirt,water,1,SS
+dirt,tree,16,SS
+dirt,ceiling,2,SS
+dirt,sky,29,SS
+dirt,table,2,SS
+dirt,floor,2,SS
+dirt,pavement,8,SS
+dirt,mountain,1,SS
+dirt,grass,5,SS
+dirt,dirt,47,SS
+dirt,paper,1,SS
+dirt,food,3,SS
+dirt,building,12,SS
+dirt,rock,1,SS
+dirt,wall,17,SS
+dirt,person,43,ST
+dirt,bicycle,1,ST
+dirt,car,8,ST
+dirt,motorcycle,8,ST
+dirt,bus,6,ST
+dirt,truck,10,ST
+dirt,backpack,7,ST
+dirt,handbag,1,ST
+dirt,sports ball,2,ST
+dirt,bottle,1,ST
+dirt,cup,1,ST
+dirt,chair,4,ST
+dirt,couch,1,ST
+dirt,potted plant,3,ST
+paper,banner,3,SS
+paper,cardboard,2,SS
+paper,road,1,SS
+paper,towel,1,SS
+paper,wall-stone,1,SS
+paper,wall-tile,1,SS
+paper,wall-wood,1,SS
+paper,tree,1,SS
+paper,ceiling,2,SS
+paper,sky,2,SS
+paper,table,2,SS
+paper,floor,2,SS
+paper,pavement,1,SS
+paper,dirt,1,SS
+paper,paper,8,SS
+paper,building,1,SS
+paper,wall,5,SS
+paper,person,6,ST
+paper,car,1,ST
+paper,motorcycle,1,ST
+paper,bench,1,ST
+paper,backpack,1,ST
+paper,bottle,1,ST
+paper,cup,1,ST
+paper,chair,1,ST
+paper,book,1,ST
+food,cardboard,1,SS
+food,sand,1,SS
+food,wall-stone,4,SS
+food,window,1,SS
+food,tree,5,SS
+food,floor,3,SS
+food,pavement,1,SS
+food,dirt,3,SS
+food,food,6,SS
+food,rock,2,SS
+food,wall,6,SS
+food,person,6,ST
+food,bottle,1,ST
+food,cup,1,ST
+food,spoon,1,ST
+food,bowl,1,ST
+food,chair,2,ST
+food,potted plant,1,ST
+building,banner,4,SS
+building,cardboard,1,SS
+building,door-stuff,2,SS
+building,road,5,SS
+building,sand,15,SS
+building,towel,1,SS
+building,wall-brick,2,SS
+building,wall-stone,2,SS
+building,tree,4,SS
+building,sky,26,SS
+building,pavement,8,SS
+building,dirt,12,SS
+building,paper,1,SS
+building,building,27,SS
+building,rock,3,SS
+building,wall,12,SS
+building,person,27,ST
+building,bicycle,2,ST
+building,car,6,ST
+building,motorcycle,11,ST
+building,bus,6,ST
+building,truck,5,ST
+building,bench,2,ST
+building,backpack,5,ST
+building,handbag,1,ST
+building,suitcase,2,ST
+building,chair,1,ST
+building,potted plant,2,ST
+building,dining table,1,ST
+rock,sand,7,SS
+rock,wall-stone,3,SS
+rock,tree,2,SS
+rock,sky,7,SS
+rock,floor,1,SS
+rock,pavement,1,SS
+rock,dirt,1,SS
+rock,food,2,SS
+rock,building,3,SS
+rock,rock,9,SS
+rock,wall,5,SS
+rock,person,9,ST
+rock,car,1,ST
+rock,bench,1,ST
+rock,backpack,1,ST
+rock,suitcase,1,ST
+rock,book,1,ST
+wall,banner,15,SS
+wall,cardboard,3,SS
+wall,curtain,4,SS
+wall,door-stuff,14,SS
+wall,floor-wood,1,SS
+wall,road,1,SS
+wall,sand,26,SS
+wall,tent,2,SS
+wall,wall-brick,1,SS
+wall,wall-stone,9,SS
+wall,wall-tile,2,SS
+wall,wall-wood,1,SS
+wall,water,1,SS
+wall,window-blind,1,SS
+wall,window,7,SS
+wall,tree,11,SS
+wall,ceiling,12,SS
+wall,sky,22,SS
+wall,cabinet,1,SS
+wall,table,13,SS
+wall,floor,28,SS
+wall,pavement,15,SS
+wall,dirt,17,SS
+wall,paper,5,SS
+wall,food,6,SS
+wall,building,12,SS
+wall,rock,5,SS
+wall,wall,84,SS
+wall,rug,4,SS
+wall,person,80,ST
+wall,bicycle,1,ST
+wall,car,3,ST
+wall,motorcycle,11,ST
+wall,bus,1,ST
+wall,truck,6,ST
+wall,bench,3,ST
+wall,backpack,3,ST
+wall,handbag,3,ST
+wall,sports ball,4,ST
+wall,bottle,18,ST
+wall,cup,10,ST
+wall,spoon,2,ST
+wall,bowl,5,ST
+wall,banana,1,ST
+wall,pizza,1,ST
+wall,chair,26,ST
+wall,couch,1,ST
+wall,potted plant,2,ST
+wall,dining table,11,ST
+wall,laptop,6,ST
+wall,cell phone,2,ST
+wall,book,5,ST
+rug,banner,1,SS
+rug,curtain,2,SS
+rug,floor-wood,1,SS
+rug,tent,1,SS
+rug,ceiling,1,SS
+rug,table,2,SS
+rug,floor,1,SS
+rug,wall,4,SS
+rug,rug,4,SS
+rug,person,4,ST
+rug,bottle,2,ST
+rug,cup,1,ST
+rug,bowl,1,ST
+rug,pizza,1,ST
+rug,chair,2,ST
+rug,dining table,1,ST
+rug,laptop,2,ST
+rug,cell phone,1,ST
+rug,book,1,ST
+things,sand,1,SS
+things,things,1,SS
+person,banner,21,ST
+person,cardboard,3,ST
+person,curtain,4,ST
+person,door-stuff,14,ST
+person,floor-wood,1,ST
+person,road,10,ST
+person,sand,79,ST
+person,tent,4,ST
+person,towel,2,ST
+person,wall-brick,3,ST
+person,wall-stone,12,ST
+person,wall-tile,2,ST
+person,wall-wood,1,ST
+person,water,2,ST
+person,window-blind,1,ST
+person,window,7,ST
+person,tree,27,ST
+person,ceiling,12,ST
+person,sky,98,ST
+person,cabinet,1,ST
+person,table,13,ST
+person,floor,28,ST
+person,pavement,24,ST
+person,mountain,1,ST
+person,grass,5,ST
+person,dirt,43,ST
+person,paper,6,ST
+person,food,6,ST
+person,building,27,ST
+person,rock,9,ST
+person,wall,80,ST
+person,rug,4,ST
+person,person,163,TT
+person,bicycle,3,TT
+person,car,22,TT
+person,motorcycle,24,TT
+person,bus,14,TT
+person,truck,18,TT
+person,bench,5,TT
+person,backpack,10,TT
+person,handbag,12,TT
+person,suitcase,3,TT
+person,sports ball,5,TT
+person,bottle,18,TT
+person,cup,10,TT
+person,spoon,2,TT
+person,bowl,6,TT
+person,banana,1,TT
+person,pizza,1,TT
+person,chair,29,TT
+person,couch,1,TT
+person,potted plant,4,TT
+person,dining table,11,TT
+person,laptop,6,TT
+person,cell phone,2,TT
+person,book,5,TT
+bicycle,door-stuff,1,ST
+bicycle,road,1,ST
+bicycle,sand,1,ST
+bicycle,wall-stone,1,ST
+bicycle,sky,2,ST
+bicycle,pavement,2,ST
+bicycle,dirt,1,ST
+bicycle,building,2,ST
+bicycle,wall,1,ST
+bicycle,person,3,TT
+bicycle,bicycle,3,TT
+bicycle,car,2,TT
+bicycle,motorcycle,2,TT
+bicycle,bus,2,TT
+bicycle,sports ball,1,TT
+bicycle,cup,1,TT
+bicycle,chair,2,TT
+car,cardboard,1,ST
+car,road,4,ST
+car,sand,13,ST
+car,tree,6,ST
+car,ceiling,1,ST
+car,sky,20,ST
+car,table,1,ST
+car,pavement,7,ST
+car,dirt,8,ST
+car,paper,1,ST
+car,building,6,ST
+car,rock,1,ST
+car,wall,3,ST
+car,person,22,TT
+car,bicycle,2,TT
+car,car,22,TT
+car,motorcycle,6,TT
+car,bus,6,TT
+car,truck,4,TT
+car,bench,1,TT
+car,backpack,5,TT
+car,handbag,1,TT
+car,suitcase,2,TT
+car,cup,1,TT
+car,chair,2,TT
+car,potted plant,2,TT
+motorcycle,banner,1,ST
+motorcycle,cardboard,1,ST
+motorcycle,door-stuff,2,ST
+motorcycle,road,5,ST
+motorcycle,sand,14,ST
+motorcycle,tent,1,ST
+motorcycle,tree,1,ST
+motorcycle,sky,20,ST
+motorcycle,pavement,9,ST
+motorcycle,dirt,8,ST
+motorcycle,paper,1,ST
+motorcycle,building,11,ST
+motorcycle,wall,11,ST
+motorcycle,person,24,TT
+motorcycle,bicycle,2,TT
+motorcycle,car,6,TT
+motorcycle,motorcycle,25,TT
+motorcycle,bus,6,TT
+motorcycle,truck,1,TT
+motorcycle,bench,1,TT
+motorcycle,backpack,4,TT
+motorcycle,handbag,1,TT
+motorcycle,suitcase,1,TT
+motorcycle,bottle,2,TT
+motorcycle,cup,1,TT
+motorcycle,chair,2,TT
+motorcycle,couch,1,TT
+motorcycle,dining table,1,TT
+bus,road,6,ST
+bus,sand,3,ST
+bus,tree,2,ST
+bus,sky,11,ST
+bus,pavement,8,ST
+bus,dirt,6,ST
+bus,building,6,ST
+bus,wall,1,ST
+bus,person,14,TT
+bus,bicycle,2,TT
+bus,car,6,TT
+bus,motorcycle,6,TT
+bus,bus,14,TT
+bus,truck,2,TT
+bus,backpack,3,TT
+bus,handbag,2,TT
+bus,suitcase,2,TT
+bus,sports ball,1,TT
+bus,chair,2,TT
+bus,potted plant,1,TT
+truck,door-stuff,1,ST
+truck,road,3,ST
+truck,sand,12,ST
+truck,wall-stone,2,ST
+truck,tree,3,ST
+truck,ceiling,1,ST
+truck,sky,16,ST
+truck,table,1,ST
+truck,pavement,5,ST
+truck,dirt,10,ST
+truck,building,5,ST
+truck,wall,6,ST
+truck,person,18,TT
+truck,car,4,TT
+truck,motorcycle,1,TT
+truck,bus,2,TT
+truck,truck,19,TT
+truck,backpack,2,TT
+truck,sports ball,1,TT
+truck,chair,2,TT
+truck,potted plant,1,TT
+bench,cardboard,1,ST
+bench,road,1,ST
+bench,sand,1,ST
+bench,wall-tile,1,ST
+bench,window,1,ST
+bench,sky,3,ST
+bench,floor,2,ST
+bench,pavement,1,ST
+bench,paper,1,ST
+bench,building,2,ST
+bench,rock,1,ST
+bench,wall,3,ST
+bench,person,5,TT
+bench,car,1,TT
+bench,motorcycle,1,TT
+bench,bench,5,TT
+bench,backpack,1,TT
+bench,handbag,1,TT
+backpack,banner,1,ST
+backpack,cardboard,1,ST
+backpack,road,3,ST
+backpack,sand,5,ST
+backpack,tree,1,ST
+backpack,sky,9,ST
+backpack,pavement,4,ST
+backpack,dirt,7,ST
+backpack,paper,1,ST
+backpack,building,5,ST
+backpack,rock,1,ST
+backpack,wall,3,ST
+backpack,person,10,TT
+backpack,car,5,TT
+backpack,motorcycle,4,TT
+backpack,bus,3,TT
+backpack,truck,2,TT
+backpack,bench,1,TT
+backpack,backpack,11,TT
+backpack,handbag,2,TT
+backpack,suitcase,1,TT
+backpack,bottle,1,TT
+backpack,cup,1,TT
+backpack,potted plant,1,TT
+handbag,banner,1,ST
+handbag,door-stuff,1,ST
+handbag,road,1,ST
+handbag,sand,8,ST
+handbag,tent,1,ST
+handbag,wall-stone,1,ST
+handbag,window,1,ST
+handbag,tree,1,ST
+handbag,sky,9,ST
+handbag,table,1,ST
+handbag,floor,2,ST
+handbag,pavement,1,ST
+handbag,dirt,1,ST
+handbag,building,1,ST
+handbag,wall,3,ST
+handbag,person,12,TT
+handbag,car,1,TT
+handbag,motorcycle,1,TT
+handbag,bus,2,TT
+handbag,bench,1,TT
+handbag,backpack,2,TT
+handbag,handbag,12,TT
+handbag,bottle,1,TT
+handbag,cup,2,TT
+handbag,bowl,1,TT
+handbag,chair,1,TT
+handbag,dining table,1,TT
+handbag,laptop,1,TT
+handbag,book,1,TT
+suitcase,road,1,ST
+suitcase,sand,1,ST
+suitcase,tree,1,ST
+suitcase,sky,3,ST
+suitcase,pavement,2,ST
+suitcase,building,2,ST
+suitcase,rock,1,ST
+suitcase,person,3,TT
+suitcase,car,2,TT
+suitcase,motorcycle,1,TT
+suitcase,bus,2,TT
+suitcase,backpack,1,TT
+suitcase,suitcase,3,TT
+sports ball,door-stuff,1,ST
+sports ball,sand,2,ST
+sports ball,wall-stone,1,ST
+sports ball,ceiling,1,ST
+sports ball,sky,2,ST
+sports ball,floor,2,ST
+sports ball,pavement,2,ST
+sports ball,dirt,2,ST
+sports ball,wall,4,ST
+sports ball,person,5,TT
+sports ball,bicycle,1,TT
+sports ball,bus,1,TT
+sports ball,truck,1,TT
+sports ball,sports ball,5,TT
+sports ball,bottle,1,TT
+sports ball,cup,1,TT
+sports ball,chair,3,TT
+sports ball,dining table,1,TT
+bottle,banner,7,ST
+bottle,door-stuff,4,ST
+bottle,floor-wood,1,ST
+bottle,sand,2,ST
+bottle,tent,1,ST
+bottle,water,1,ST
+bottle,window-blind,1,ST
+bottle,window,3,ST
+bottle,ceiling,3,ST
+bottle,sky,3,ST
+bottle,cabinet,1,ST
+bottle,table,7,ST
+bottle,floor,12,ST
+bottle,pavement,4,ST
+bottle,dirt,1,ST
+bottle,paper,1,ST
+bottle,food,1,ST
+bottle,wall,18,ST
+bottle,rug,2,ST
+bottle,person,18,TT
+bottle,motorcycle,2,TT
+bottle,backpack,1,TT
+bottle,handbag,1,TT
+bottle,sports ball,1,TT
+bottle,bottle,20,TT
+bottle,cup,8,TT
+bottle,spoon,2,TT
+bottle,bowl,4,TT
+bottle,pizza,1,TT
+bottle,chair,10,TT
+bottle,dining table,6,TT
+bottle,laptop,3,TT
+bottle,cell phone,2,TT
+bottle,book,1,TT
+cup,banner,2,ST
+cup,door-stuff,3,ST
+cup,floor-wood,1,ST
+cup,sand,1,ST
+cup,tent,1,ST
+cup,wall-stone,1,ST
+cup,window,2,ST
+cup,tree,2,ST
+cup,ceiling,1,ST
+cup,sky,1,ST
+cup,table,4,ST
+cup,floor,5,ST
+cup,pavement,3,ST
+cup,dirt,1,ST
+cup,paper,1,ST
+cup,food,1,ST
+cup,wall,10,ST
+cup,rug,1,ST
+cup,person,10,TT
+cup,bicycle,1,TT
+cup,car,1,TT
+cup,motorcycle,1,TT
+cup,backpack,1,TT
+cup,handbag,2,TT
+cup,sports ball,1,TT
+cup,bottle,8,TT
+cup,cup,11,TT
+cup,spoon,1,TT
+cup,bowl,2,TT
+cup,pizza,1,TT
+cup,chair,8,TT
+cup,dining table,3,TT
+cup,laptop,2,TT
+cup,cell phone,1,TT
+cup,book,1,TT
+spoon,sand,1,ST
+spoon,window,1,ST
+spoon,floor,2,ST
+spoon,pavement,1,ST
+spoon,food,1,ST
+spoon,wall,2,ST
+spoon,person,2,TT
+spoon,bottle,2,TT
+spoon,cup,1,TT
+spoon,spoon,2,TT
+spoon,bowl,2,TT
+spoon,chair,1,TT
+bowl,banner,1,ST
+bowl,floor-wood,1,ST
+bowl,sand,3,ST
+bowl,tent,2,ST
+bowl,water,1,ST
+bowl,window,2,ST
+bowl,sky,2,ST
+bowl,table,1,ST
+bowl,floor,4,ST
+bowl,pavement,2,ST
+bowl,food,1,ST
+bowl,wall,5,ST
+bowl,rug,1,ST
+bowl,person,6,TT
+bowl,handbag,1,TT
+bowl,bottle,4,TT
+bowl,cup,2,TT
+bowl,spoon,2,TT
+bowl,bowl,6,TT
+bowl,pizza,1,TT
+bowl,chair,1,TT
+banana,floor,1,ST
+banana,wall,1,ST
+banana,person,1,TT
+banana,banana,1,TT
+pizza,banner,1,ST
+pizza,floor-wood,1,ST
+pizza,tent,1,ST
+pizza,wall,1,ST
+pizza,rug,1,ST
+pizza,person,1,TT
+pizza,bottle,1,TT
+pizza,cup,1,TT
+pizza,bowl,1,TT
+pizza,pizza,1,TT
+chair,banner,7,ST
+chair,cardboard,1,ST
+chair,curtain,4,ST
+chair,door-stuff,6,ST
+chair,sand,5,ST
+chair,tent,1,ST
+chair,wall-brick,1,ST
+chair,wall-stone,1,ST
+chair,window,2,ST
+chair,tree,4,ST
+chair,ceiling,8,ST
+chair,sky,4,ST
+chair,table,9,ST
+chair,floor,14,ST
+chair,pavement,3,ST
+chair,dirt,4,ST
+chair,paper,1,ST
+chair,food,2,ST
+chair,building,1,ST
+chair,wall,26,ST
+chair,rug,2,ST
+chair,person,29,TT
+chair,bicycle,2,TT
+chair,car,2,TT
+chair,motorcycle,2,TT
+chair,bus,2,TT
+chair,truck,2,TT
+chair,handbag,1,TT
+chair,sports ball,3,TT
+chair,bottle,10,TT
+chair,cup,8,TT
+chair,spoon,1,TT
+chair,bowl,1,TT
+chair,chair,29,TT
+chair,potted plant,1,TT
+chair,dining table,10,TT
+chair,laptop,5,TT
+chair,cell phone,1,TT
+chair,book,2,TT
+couch,door-stuff,1,ST
+couch,pavement,1,ST
+couch,dirt,1,ST
+couch,wall,1,ST
+couch,person,1,TT
+couch,motorcycle,1,TT
+couch,couch,1,TT
+potted plant,cardboard,1,ST
+potted plant,sand,2,ST
+potted plant,wall-stone,1,ST
+potted plant,tree,3,ST
+potted plant,sky,3,ST
+potted plant,floor,1,ST
+potted plant,pavement,1,ST
+potted plant,dirt,3,ST
+potted plant,food,1,ST
+potted plant,building,2,ST
+potted plant,wall,2,ST
+potted plant,person,4,TT
+potted plant,car,2,TT
+potted plant,bus,1,TT
+potted plant,truck,1,TT
+potted plant,backpack,1,TT
+potted plant,chair,1,TT
+potted plant,potted plant,4,TT
+dining table,banner,4,ST
+dining table,curtain,2,ST
+dining table,door-stuff,3,ST
+dining table,sand,1,ST
+dining table,window,1,ST
+dining table,ceiling,2,ST
+dining table,sky,2,ST
+dining table,table,5,ST
+dining table,floor,7,ST
+dining table,pavement,1,ST
+dining table,building,1,ST
+dining table,wall,11,ST
+dining table,rug,1,ST
+dining table,person,11,TT
+dining table,motorcycle,1,TT
+dining table,handbag,1,TT
+dining table,sports ball,1,TT
+dining table,bottle,6,TT
+dining table,cup,3,TT
+dining table,chair,10,TT
+dining table,dining table,11,TT
+dining table,laptop,2,TT
+dining table,book,2,TT
+laptop,curtain,3,ST
+laptop,door-stuff,1,ST
+laptop,window-blind,1,ST
+laptop,window,2,ST
+laptop,ceiling,2,ST
+laptop,table,5,ST
+laptop,floor,2,ST
+laptop,wall,6,ST
+laptop,rug,2,ST
+laptop,person,6,TT
+laptop,handbag,1,TT
+laptop,bottle,3,TT
+laptop,cup,2,TT
+laptop,chair,5,TT
+laptop,dining table,2,TT
+laptop,laptop,6,TT
+laptop,cell phone,1,TT
+laptop,book,2,TT
+cell phone,door-stuff,1,ST
+cell phone,table,1,ST
+cell phone,floor,2,ST
+cell phone,wall,2,ST
+cell phone,rug,1,ST
+cell phone,person,2,TT
+cell phone,bottle,2,TT
+cell phone,cup,1,TT
+cell phone,chair,1,TT
+cell phone,laptop,1,TT
+cell phone,cell phone,2,TT
+book,banner,1,ST
+book,curtain,1,ST
+book,sand,1,ST
+book,wall-tile,1,ST
+book,window,1,ST
+book,ceiling,1,ST
+book,sky,1,ST
+book,table,3,ST
+book,floor,2,ST
+book,paper,1,ST
+book,rock,1,ST
+book,wall,5,ST
+book,rug,1,ST
+book,person,5,TT
+book,handbag,1,TT
+book,bottle,1,TT
+book,cup,1,TT
+book,chair,2,TT
+book,dining table,2,TT
+book,laptop,2,TT
+book,book,5,TT
