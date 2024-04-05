@@ -289,14 +289,18 @@ class DataPreprocessing:
                 return float(fraction)
             except ValueError:
                 return fraction_str  # Return original value if it cannot be converted
-        
+        columns = list(self.data.columns.copy())
+
         # Iterate over each column in the DataFrame
-        for col in self.data.columns:
+        for col in columns:
+
             if self.include_exclude_entry_condition(col, include, exclude):
                 if self.data[col].dtype == 'object':  # Check if column type is string
-                    try:
+                    try:    
                         # Try converting all values in the column to float
                         self.data[col] = self.data[col].apply(string_fraction_to_float)
-                        return self.data
+                        
                     except Exception as e:
                         print(f"Error converting column '{col}': {e}")
+
+        return self.data

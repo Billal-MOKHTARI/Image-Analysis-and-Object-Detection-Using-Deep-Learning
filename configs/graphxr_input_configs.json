@@ -1,0 +1,96 @@
+{
+  "graphxr_data_configs": {
+    "annotation_matrix_path": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/2. processed_annotations.csv",
+    "label_categories_path": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/label_categories.csv",
+    "image_base_URL": "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/",
+    "node_column_name": "Node",
+    "neighbor_column_name": "Neighbor",
+    "weight_column_name": "Weight"
+  },
+  "metadata_extractor": {
+    "image_folder": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/test",
+    "extractor_script": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/src/scripts/extract_metadata.sh",
+    "tmp_path": "tmp.csv",
+    "metadata_preprocess_arguments": {
+      "delete_empty_columns": {
+        "threshold": 0.90395480226,
+        "delete_by": [
+          "Unknown (0)"
+        ],
+        "include": null,
+        "exclude": null
+      },
+      "drop_columns": {
+        "columns": [
+          "Directory",
+          "FocalLength35efl",
+          "GPSDateTime",
+          "GPSPosition"
+        ]
+      },
+      "set_index_from_column": {
+        "index_name": "FileName",
+        "column_name": "FileName"
+      },
+      "bring_up_measure_units": {
+        "include": null,
+        "exclude": [
+          "GPSLatitude"
+        ]
+      },
+      "convert_datetime": {
+        "regex_from": "\\d{4}:\\d{2}:\\d{2} (\\d{2}:\\d{2}:\\d{2})?(\\+\\d{2}:\\d{2})?",
+        "include": null,
+        "exclude": null
+      },
+      "convert_fraction_columns_to_float": {
+        "include": null,
+        "exclude": null
+      },
+      "split_string_column": {
+        "column_name": "ImageSize",
+        "new_column_names": [
+          "ImageWidth",
+          "ImageHeight"
+        ],
+        "keep": false,
+        "separator": "x"
+      },
+      "gps_dms_to_dd": {
+        "include": null,
+        "exclude": null
+      },
+      "modify_column": {
+        "column_name": "YCbCrSubSampling",
+        "possible_prefixes": [
+          "YCbCr"
+        ],
+        "possible_suffixes": [
+          "\\(\\d+ \\d+\\)"
+        ],
+        "bracket_content": null
+      },
+      "remove_prefix": {
+        "column_name": "MIMEType",
+        "prefix": "image/"
+      }
+    }
+  },
+  "data_saver": {
+    "save_paths": {
+      "obj_node_features": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_node_features.csv",
+      "obj_co_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_co_occ_list.csv",
+      "img_node_features": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_node_features.csv",
+      "img_co_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/img_co_occ_list.csv",
+      "obj_img_occ_list": "/home/bimokhtari1/Documents/Image-Analysis-and-Object-Detection-Using-Deep-Learning/data/output/graphxr_datasets/obj_img_occ_list.csv"
+    },
+    "indexes": {
+      "obj_node_features": false,
+      "obj_co_occ_list": false,
+      "img_node_features": false,
+      "img_co_occ_list": false,
+      "obj_img_occ_list": false
+    },
+    "save_data": true
+  }
+}

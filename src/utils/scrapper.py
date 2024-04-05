@@ -92,5 +92,3 @@ def get_exif_data(folder_path, save_path, metadata_extractor="./src/scripts/extr
         print("Metadata extraction completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error: Metadata extraction failed with exit code {e.returncode}.")
-
-get_exif_data("data/test", "data/output/metadata/image_metadata.csv")

@@ -5,6 +5,10 @@ from datetime import datetime
 import json
 from urllib.request import urlopen
 from urllib.parse import urlparse
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+from dataset import data_preprocessing
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -234,7 +238,20 @@ def is_url(path):
     except ValueError:
         return False
 
+def preprocess_image_metadata(metadata, configs):
+    dpp = data_preprocessing.DataPreprocessing(metadata)  # Assuming DataPreprocessing class is imported as DataPreprocessing
 
+    # Load the metadata
+    methods = configs.keys()
+
+    for method_name in methods:
+        method_params = configs[method_name]
+
+        # Call the method dynamically
+        method = getattr(dpp, method_name)
+        metadata = method(**method_params)
+    return metadata
+    
 
 # dpp.delete_empty_columns(1-17/177)
 # filtered_data = drop_columns(columns=['Directory', 'FocalLength35efl', 'GPSDateTime', 'GPSPosition'])
