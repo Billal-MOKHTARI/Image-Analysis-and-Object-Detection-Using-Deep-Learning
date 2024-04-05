@@ -1,8 +1,8 @@
 {
   "use_absolute_path": true,
   "graphxr_data_configs": {
-    "annotation_matrix_path": "data/output/2. processed_annotations.csv",
-    "label_categories_path": "data/output/label_categories.csv",
+    "annotation_matrix_path": "data/input/processed_annotations.csv",
+    "label_categories_path": "data/input/label_categories.csv",
     "image_base_URL": "https://raw.githubusercontent.com/Billal-MOKHTARI/Image-Analysis-and-Object-Detection-Using-Deep-Learning/main/data/test/",
     "node_column_name": "Node",
     "neighbor_column_name": "Neighbor",
