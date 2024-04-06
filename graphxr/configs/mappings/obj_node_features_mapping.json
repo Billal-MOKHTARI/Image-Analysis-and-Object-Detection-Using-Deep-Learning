@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "header": [
+        "object_Node",
+        "object_NodeWeight",
+        "object_Type"
+    ],
+    "nodeMapping": [
+        {
+            "autoId": true,
+            "id": "Category1",
+            "key": "object_Node",
+            "name": "Object",
+            "x": 200.544724824255,
+            "y": 210.2912662076389,
+            "properties": {
+                "object_Node": "object_Node",
+                "object_NodeWeight": "",
+                "object_Type": ""
+            }
+        }
+    ],
+    "edgeMapping": []
+}

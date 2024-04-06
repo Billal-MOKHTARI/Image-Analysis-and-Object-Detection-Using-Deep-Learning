@@ -1,0 +1,43 @@
+{
+    "version": "1.0",
+    "header": [],
+    "nodeMapping": [
+        {
+            "autoId": true,
+            "id": "Category1",
+            "key": "object_Node",
+            "name": "Object",
+            "x": 162.37891308266956,
+            "y": 279.59001263622037,
+            "properties": {
+                "object_Node": ""
+            }
+        },
+        {
+            "autoId": true,
+            "id": "Category2",
+            "key": "object_Neighbor",
+            "name": "Object",
+            "x": 398.37891308266956,
+            "y": 180.59001263622037,
+            "properties": {
+                "object_Neighbor": "object_Node"
+            }
+        }
+    ],
+    "edgeMapping": [
+        {
+            "name": "OBJECT CO-OCCURRENCE",
+            "properties": {
+                "object_Node": "object_Node",
+                "object_Neighbor": "object_Neighbor",
+                "object_LinkType": "",
+                "object_Weight": ""
+            },
+            "from": "Category1",
+            "fromKey": "object_Node",
+            "to": "Category2",
+            "toKey": "object_Neighbor"
+        }
+    ]
+}
